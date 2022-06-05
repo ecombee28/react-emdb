@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Nav from "../src/Components/Nav";
 import Search from "../src/Components/Search";
 import Collections from "../src/Components/Collections";
+import Watchlist from "../src/Components/Watchlist";
 
 function App() {
   //search/collections/disney
@@ -17,6 +18,7 @@ function App() {
           <Route path="/movie/:movieId" element={<Movie />} />
           <Route path="/search" element={<Search />} />
           <Route path="/search/collections" element={<Collections />} />
+          <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </BrowserRouter>
     </div>
