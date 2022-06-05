@@ -1,4 +1,4 @@
-export const HandleValidation = (
+export const HandleLoginValidation = (
   userName,
   Password,
   setUserInput,

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import style from "../styles/Login.module.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../slices/userSlice";
-import { setUserId } from "../slices/userSlice";
-import { setMovies } from "../slices/userSlice";
-import Head from "next/head";
+import { HandleSignUpValidation } from "../lib/HandleSignUpValidation";
+import { SignUpUser } from "../utils/api";
+import { loginUser, setUserId, setMovies } from "../slices/userSlice";
 
 export default function SignUp({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -18,109 +16,97 @@ export default function SignUp({ changeView }) {
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
+  const [apiData, setApiData] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const updateName = (e) => {
-    setUserNameInput(e.target.value);
+  const addUser = (id, username) => {
+    dispatch(setUserId(id));
+    dispatch(loginUser(username));
+
+    // if (movies) {
+    //   movies.map((m) => dispatch(setMovies(m)));
+    // }
   };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const handleValidation = async () => {
+    const handleRes = HandleSignUpValidation(
+      setError,
+      userNameInput,
+      password,
+      confirmPassword,
+      setUserInput,
+      setUserError,
+      setPassInput,
+      setPassError
+    );
 
-  const updateConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+    if (handleRes) {
+      setLoading(true);
 
-  const handleValidation = () => {
-    setError(false);
-    const uLen = userNameInput.length;
-    const pLen = password.length;
-    const conPLen = confirmPassword.length;
-    let userValPass = false;
-    let passValPass = false;
-    let conPassValPass = false;
+      const userResponse = await SignUpUser(
+        userNameInput,
+        password,
+        setLoading,
+        navigate
+      );
 
-    if (uLen > 12) {
-      userValPass = false;
-      setUserInput(false);
-      setUserError("Username can't exceed 12 characters");
-    } else if (uLen > 3 && uLen <= 12) {
-      userValPass = true;
-      setUserInput(true);
-    } else {
-      userValPass = false;
-      setUserInput(false);
-      if (uLen >= 0 && uLen <= 3) {
-        setUserError("Username must be at least 4 characters");
-      }
-    }
-    if (pLen > 5) {
-      if (password !== confirmPassword) {
-        passValPass = false;
-        conPassValPass = false;
-        setPassInput(false);
-        setPassError("Passwords do not match");
+      if (userResponse.status === "success") {
+        addUser(userResponse.id, userResponse.user);
+
+        navigate("/");
+        setLoading(false);
       } else {
-        passValPass = true;
-        conPassValPass = true;
-        setPassInput(true);
+        setError(true);
+        setPassword("");
+        setConfirmPassword("");
+        setLoading(false);
       }
-    } else {
-      passValPass = false;
-      setPassInput(false);
-      if ((pLen >= 0 && pLen <= 5) || (conPLen >= 0 && conPLen <= 5)) {
-        setPassError("Password must be at least 5 characters");
-      }
-    }
-
-    if (userValPass && passValPass && conPassValPass) {
-      signIn();
     }
   };
 
-  const signIn = () => {
-    setLoading(true);
-    axios
-      .post(`https://combeecreations.com/emdbapi/public/api/adduser`, {
-        username: userNameInput,
-        password: password,
-      })
-      .then((response) => {
-        if (response.data.status === "success") {
-          axios
-            .post(`https://combeecreations.com/emdbapi/public/api/movies`, {
-              userId: response.data.id,
-            })
-            .then((res) => {
-              addUser(response.data.id, response.data.user, res.data.Movies);
+  // const signIn = () => {
+  //   setLoading(true);
 
-              navigate("/");
-              setLoading(false);
-            });
-        } else {
-          localStorage.setItem(
-            "error_message",
-            JSON.stringify(response.data.error_message)
-          );
-          setError(true);
-          setPassword("");
-          setConfirmPassword("");
-          setLoading(false);
-        }
-      });
+  //   // axios
+  //   //   .post(`https://combeecreations.com/emdbapi/public/api/adduser`, {
+  //   //     username: userNameInput,
+  //   //     password: password,
+  //   //   })
+  //   //   .then((response) => {
+  //   //     if (response.data.status === "success") {
+  //   //       axios
+  //   //         .post(`https://combeecreations.com/emdbapi/public/api/movies`, {
+  //   //           userId: response.data.id,
+  //   //         })
+  //   //         .then((res) => {
+  //   //           addUser(response.data.id, response.data.user, res.data.Movies);
 
-    const addUser = (id, username, avatar, movies) => {
-      dispatch(setUserId(id));
-      dispatch(loginUser(username));
+  //   //           navigate("/");
+  //   //           setLoading(false);
+  //   //         });
+  //   //     } else {
+  //   //       localStorage.setItem(
+  //   //         "error_message",
+  //   //         JSON.stringify(response.data.error_message)
+  //   //       );
+  //   //       setError(true);
+  //   //       setPassword("");
+  //   //       setConfirmPassword("");
+  //   //       setLoading(false);
+  //   //     }
+  //   //   });
 
-      if (movies) {
-        movies.map((m) => dispatch(setMovies(m)));
-      }
-    };
-  };
+  //   // const addUser = (id, username, movies) => {
+  //   //   dispatch(setUserId(id));
+  //   //   dispatch(loginUser(username));
+
+  //   //   if (movies) {
+  //   //     movies.map((m) => dispatch(setMovies(m)));
+  //   //   }
+  //   // };
+  // };
 
   const inputErrorStyle = {
     top: "55%",
@@ -145,7 +131,7 @@ export default function SignUp({ changeView }) {
               value={userNameInput}
               required
               className={style.input}
-              onChange={updateName}
+              onChange={(e) => setUserNameInput(e.target.value)}
             />
           </div>
           <p className={style.error}>{!passInput ? passError : null}</p>
@@ -161,7 +147,7 @@ export default function SignUp({ changeView }) {
               required
               value={password}
               className={style.input}
-              onChange={updatePassword}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className={style.input_wrapper}>
@@ -176,7 +162,7 @@ export default function SignUp({ changeView }) {
               required
               value={confirmPassword}
               className={style.input}
-              onChange={updateConfirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
           <label className={`${style.invalid_login}`} style={inputErrorStyle}>

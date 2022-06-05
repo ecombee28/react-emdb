@@ -50,7 +50,6 @@ function Movie() {
     callMovies();
   }, [movieId]);
 
-  console.log(movie);
   return (
     <div>
       <>

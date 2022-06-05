@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import style from "../styles/Login.module.css";
-import { HandleValidation } from "../lib/HandleValidation";
-import axios from "axios";
+import { HandleLoginValidation } from "../lib/HandleLoginValidation";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api";
+import { useDispatch } from "react-redux";
+import { loginUser, setUserId, setMovies } from "../slices/userSlice";
 
 export default function Login({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -15,18 +16,20 @@ export default function Login({ changeView }) {
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const updateName = (e) => {
-    setUserNameInput(e.target.value);
+  const addUser = (id, username, movies) => {
+    dispatch(setUserId(id));
+    dispatch(loginUser(username));
+
+    if (movies) {
+      movies.map((m) => dispatch(setMovies(m)));
+    }
   };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
   const handleValidation = async () => {
-    const handleRes = HandleValidation(
+    const handleRes = HandleLoginValidation(
       userNameInput,
       password,
       setUserInput,
@@ -38,15 +41,17 @@ export default function Login({ changeView }) {
     if (handleRes) {
       setLoading(true);
 
-      await login(
-        userNameInput,
-        password,
-        setLoading,
-        navigate,
-        Cookie,
-        setError,
-        setPassword
-      );
+      const userResponse = await login(userNameInput, password);
+
+      if (userResponse.status === "success") {
+        addUser(userResponse.id, userResponse.user, userResponse.movies);
+        navigate("/");
+        setLoading(false);
+      } else {
+        setError(true);
+        setPassword("");
+        setLoading(false);
+      }
     }
   };
   return (
@@ -69,7 +74,7 @@ export default function Login({ changeView }) {
               value={userNameInput}
               required
               className={style.input}
-              onChange={updateName}
+              onChange={(e) => setUserNameInput(e.target.value)}
             />
           </div>
           <p data-testid="pass-error-txt" className={style.error}>
@@ -87,7 +92,7 @@ export default function Login({ changeView }) {
               required
               value={password}
               className={style.input}
-              onChange={updatePassword}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <label className={`${style.invalid_login}`}>

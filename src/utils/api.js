@@ -297,40 +297,74 @@ export async function getTopRatedMovies() {
     console.error(error);
   }
 }
-
-export async function login(
-  userNameInput,
-  password,
-  setLoading,
-  navigate,
-  Cookie,
-  setError,
-  setPassword
-) {
-  axios
-    .post(`https://combeecreations.com/emdbapi/public/api/login`, {
-      username: userNameInput,
-      password: password,
-    })
-    .then((response) => {
-      if (response.data.status === "success") {
-        Cookie.set("id", response.data.id, { expires: 1 });
-        Cookie.set("username", response.data.user, { expires: 1 });
-
-        navigate("/");
-        setLoading(false);
-      } else {
-        localStorage.setItem(
-          "error_message",
-          JSON.stringify(response.data.error_message)
-        );
-        setError(true);
-        setPassword("");
-        setLoading(false);
-
-        setTimeout(() => {
-          setError(false);
-        }, 6000);
+/**
+ *
+ * @param {*} userNameInput
+ * @param {*} password
+ * @param {*} Cookie
+ * @returns
+ */
+export async function login(userNameInput, password) {
+  try {
+    const loginUser = await axios.post(
+      `https://combeecreations.com/emdbapi/public/api/login`,
+      {
+        username: userNameInput,
+        password: password,
       }
-    });
+    );
+    const loggedInUser = await loginUser.data;
+
+    if (loggedInUser.status === "success") {
+      const getUsersMovies = await axios.post(
+        `https://combeecreations.com/emdbapi/public/api/movies`,
+        {
+          userId: loggedInUser.id,
+        }
+      );
+
+      const movies = await getUsersMovies.data.Movies;
+
+      return { ...loginUser.data, movies };
+    } else {
+      localStorage.setItem(
+        "error_message",
+        JSON.stringify(loggedInUser.error_message)
+      );
+      return loggedInUser;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+/**
+ *
+ * @param {*} userNameInput
+ * @param {*} password
+ * @param {*} setLoading
+ * @returns
+ */
+export async function SignUpUser(userNameInput, password, setLoading) {
+  try {
+    const addUser = await axios.post(
+      `https://combeecreations.com/emdbapi/public/api/adduser`,
+      {
+        username: userNameInput,
+        password: password,
+      }
+    );
+    const addUserResponse = await addUser.data;
+
+    if (addUserResponse.status === "success") {
+      return addUserResponse;
+    } else {
+      localStorage.setItem(
+        "error_message",
+        JSON.stringify(addUserResponse.error_message)
+      );
+      return addUserResponse;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
