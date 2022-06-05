@@ -48,6 +48,7 @@ const Search = () => {
         <input
           type="text"
           id="input"
+          data-testid="search-input"
           placeholder="Search by movie or show title"
           className={searchStyles.input}
           onKeyUp={(e) => setQuery(e.target.value)}
@@ -59,6 +60,7 @@ const Search = () => {
         <>
           <h1
             id="search_title"
+            data-testid="search-result-title"
             className={`${searchStyles.title} ${searchStyles.title_container}`}
           >
             {`Search Results for: ${title}`}
@@ -72,6 +74,7 @@ const Search = () => {
         <>
           <h1
             id="title"
+            data-testid="main-title"
             className={`${searchStyles.title} ${searchStyles.title_container}`}
           >
             {title}

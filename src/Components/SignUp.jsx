@@ -117,9 +117,7 @@ export default function SignUp({ changeView }) {
       dispatch(loginUser(username));
 
       if (movies) {
-        movies.map((m) => {
-          dispatch(setMovies(m));
-        });
+        movies.map((m) => dispatch(setMovies(m)));
       }
     };
   };
@@ -130,11 +128,6 @@ export default function SignUp({ changeView }) {
 
   return (
     <div>
-      <Head>
-        <title>Sign Up/EMDB</title>
-        <meta name="keywords" content="web dev" />
-        <link rel="shortcut icon" href="logo.ico" />
-      </Head>
       <div className={style.main_container}> </div>
       <div className={style.signup_container}>
         <div className={style.login_wrapper}>
@@ -148,6 +141,7 @@ export default function SignUp({ changeView }) {
             <input
               type="text"
               name="username"
+              data-testid="userName-input"
               value={userNameInput}
               required
               className={style.input}
@@ -163,6 +157,7 @@ export default function SignUp({ changeView }) {
             <input
               type="password"
               name="password"
+              data-testid="password-input"
               required
               value={password}
               className={style.input}
@@ -177,6 +172,7 @@ export default function SignUp({ changeView }) {
             <input
               type="password"
               name="cPassword"
+              data-testid="confirm-password-input"
               required
               value={confirmPassword}
               className={style.input}
@@ -194,7 +190,11 @@ export default function SignUp({ changeView }) {
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>All ready a member?</p>
-            <p className={style.signup} onClick={() => changeView("login")}>
+            <p
+              data-testid="signin-text"
+              className={style.signup}
+              onClick={() => changeView("login")}
+            >
               Sign In
             </p>
           </div>

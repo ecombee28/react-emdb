@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import style from "../styles/Login.module.css";
+import { HandleValidation } from "../lib/HandleValidation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { login } from "../utils/api";
 
 export default function Login({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -23,74 +25,30 @@ export default function Login({ changeView }) {
     setPassword(e.target.value);
   };
 
-  const handleValidation = () => {
-    const uLen = userNameInput.length;
-    const pLen = password.length;
-    let userValPass = false;
-    let passValPass = false;
+  const handleValidation = async () => {
+    const handleRes = HandleValidation(
+      userNameInput,
+      password,
+      setUserInput,
+      setUserError,
+      setPassInput,
+      setPassError
+    );
 
-    if (uLen > 12) {
-      userValPass = false;
-      setUserInput(false);
-      setUserError("Username can't exceed 12 characters");
-    } else if (uLen > 3 && uLen <= 12) {
-      userValPass = true;
-      setUserInput(true);
-    } else {
-      userValPass = false;
-      setUserInput(false);
-      if (uLen >= 0 && uLen <= 3) {
-        setUserError("Username must be at least 4 characters");
-      }
-    }
+    if (handleRes) {
+      setLoading(true);
 
-    if (pLen > 5) {
-      passValPass = true;
-      setPassInput(true);
-    } else {
-      passValPass = false;
-      setPassInput(false);
-      if (pLen >= 0 && pLen <= 5) {
-        setPassError("Password must be at least 5 characters");
-      }
-    }
-
-    if (userValPass && passValPass) {
-      signIn();
+      await login(
+        userNameInput,
+        password,
+        setLoading,
+        navigate,
+        Cookie,
+        setError,
+        setPassword
+      );
     }
   };
-
-  const signIn = () => {
-    setLoading(true);
-
-    axios
-      .post(`https://combeecreations.com/emdbapi/public/api/login`, {
-        username: userNameInput,
-        password: password,
-      })
-      .then((response) => {
-        if (response.data.status === "success") {
-          Cookie.set("id", response.data.id, { expires: 1 });
-          Cookie.set("username", response.data.user, { expires: 1 });
-
-          navigate("/");
-          setLoading(false);
-        } else {
-          localStorage.setItem(
-            "error_message",
-            JSON.stringify(response.data.error_message)
-          );
-          setError(true);
-          setPassword("");
-          setLoading(false);
-
-          setTimeout(() => {
-            setError(false);
-          }, 6000);
-        }
-      });
-  };
-
   return (
     <div>
       <div className={style.main_container}> </div>
@@ -107,13 +65,16 @@ export default function Login({ changeView }) {
             <input
               type="text"
               name="username"
+              data-testid="userName-input"
               value={userNameInput}
               required
               className={style.input}
               onChange={updateName}
             />
           </div>
-          <p className={style.error}>{!passInput ? passError : null}</p>
+          <p data-testid="pass-error-txt" className={style.error}>
+            {!passInput ? passError : null}
+          </p>
           <div className={style.input_wrapper}>
             <span>
               <label>Password</label>
@@ -121,7 +82,8 @@ export default function Login({ changeView }) {
             </span>
             <input
               type="password"
-              name="username"
+              name="password"
+              data-testid="password-input"
               required
               value={password}
               className={style.input}
@@ -131,7 +93,11 @@ export default function Login({ changeView }) {
           <label className={`${style.invalid_login}`}>
             {error ? JSON.parse(localStorage.getItem("error_message")) : null}
           </label>
-          <button className={style.submit_btn} onClick={handleValidation}>
+          <button
+            name="submit-btn"
+            className={style.submit_btn}
+            onClick={handleValidation}
+          >
             Sign In
             {loading && (
               <img src="/loading.gif" alt="" className={style.loader} />
@@ -139,7 +105,11 @@ export default function Login({ changeView }) {
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>New to EMDB?</p>
-            <p className={style.signup} onClick={() => changeView("signup")}>
+            <p
+              data-testid="signup-text"
+              className={style.signup}
+              onClick={() => changeView("signup")}
+            >
               Sign Up Now
             </p>
           </div>
