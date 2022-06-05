@@ -1,0 +1,266 @@
+.wrapper {
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+.blackout {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+}
+
+.image {
+    width: 100vw;
+    object-fit: contain;
+    -webkit-mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+}
+
+.movie_info {
+    width: 70%;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    top: 30vh;
+    left: 2%;
+}
+
+.title {
+    font-size: 4.3rem;
+    color: var(--white);
+    font-weight: bold;
+    margin: 0;
+}
+
+.btn_more_info {
+    font-size: 1.7rem;
+    color: var(--white);
+    padding: 3px 13px;
+    background-color: rgba(61, 61, 61, .7);
+    border-radius: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_more_info:hover {
+    background-color: rgba(61, 61, 61, 1);
+}
+
+.plot_wrapper {
+    width: 70%;
+    max-height: 90px;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.plot {
+    font-size: 1.3rem;
+    color: var(--white);
+}
+
+.wrap {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.icon {
+    width: 28px;
+    object-fit: contain;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/***************************** 
+   Media query's up to 1080px
+ *******************************/
+
+@media screen and (max-width:1080px) {
+    .movie_info {
+        width: 90%;
+        height: auto;
+    }
+    .title {
+        font-size: 3.5rem;
+        color: var(--white);
+        font-weight: bold;
+        margin: 0;
+    }
+    .trailer {
+        font-size: 1.8rem;
+        color: var(--white);
+        padding: 3px 13px;
+        background-color: rgba(61, 61, 61, .8);
+    }
+    .plot_wrapper {
+        width: 90%;
+        max-height: 150px;
+    }
+    .plot {
+        font-size: 1.3rem;
+    }
+    .icon {
+        font-size: 15px;
+    }
+}
+
+/* @media screen and (max-device-width: 1024px) and (orientation:portrait) {
+    .movie_info {
+        width: 90%;
+        height: auto;
+        padding: 10px;
+        position: absolute;
+        top: 35vh;
+        left: 2%;
+    }
+    .title {
+        font-size: 4rem;
+        color: var(--white);
+        font-weight: bold;
+        margin: 0;
+    }
+    .trailer {
+        font-size: 1.8rem;
+        color: var(--white);
+        padding: 3px 13px;
+        background-color: rgba(61, 61, 61, .8);
+    }
+    .plot_wrapper {
+        width: 90%;
+        max-height: 150px;
+    }
+    .plot {
+        font-size: 1.3rem;
+    }
+    .icon {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-device-width: 1024px) and (orientation:landscape) {
+    .movie_info {
+        width: 80%;
+        height: auto;
+        padding: 10px;
+        position: absolute;
+        top: 30vh;
+        left: 2%;
+    }
+    .title {
+        font-size: 4rem;
+        color: var(--white);
+        font-weight: bold;
+        margin: 0;
+    }
+    .trailer {
+        font-size: 1.8rem;
+        color: var(--white);
+        padding: 3px 13px;
+        background-color: rgba(61, 61, 61, .8);
+    }
+    .plot_wrapper {
+        width: 90%;
+        max-height: 150px;
+    }
+    .plot {
+        font-size: 1.3rem;
+    }
+    .icon {
+        font-size: 15px;
+    }
+} */
+
+/***************************** 
+   Media query's up to 800px
+ *******************************/
+
+@media screen and (max-device-width: 800px) and (orientation:landscape) {
+    .wrapper {
+        background-position: center center;
+        margin-top: 50px;
+    }
+    .movie_info {
+        width: 97%;
+        height: auto;
+        top: 15vh;
+    }
+    .title {
+        font-size: 1.7rem;
+        color: var(--white);
+        font-weight: bold;
+        margin: 0;
+    }
+    .btn_more_info {
+        font-size: 1.2rem;
+    }
+    .trailer {
+        font-size: 1.3rem;
+        color: var(--white);
+        padding: 3px 13px;
+        background-color: rgba(61, 61, 61, .8);
+    }
+    .plot_wrapper {
+        width: 90%;
+        max-height: 150px;
+    }
+    .plot {
+        font-size: 1.1rem;
+    }
+    .icon {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-device-width: 800px) and (orientation:portrait) {
+    .wrapper {
+        background-position: center center;
+    }
+    .image {
+        height: 100vw;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to bottom, var(--black) 72%, transparent 100%);
+        mask-image: linear-gradient(to bottom, var(--black) 72%, transparent 100%);
+    }
+    .movie_info {
+        width: 97%;
+        height: auto;
+        top: 20vh;
+    }
+    .title {
+        font-size: 1.7rem;
+        color: var(--white);
+        font-weight: bold;
+        margin: 0;
+    }
+    .btn_more_info {
+        font-size: 1.2rem;
+    }
+    .trailer {
+        font-size: 1.3rem;
+        color: var(--white);
+        padding: 3px 13px;
+        background-color: rgba(61, 61, 61, .8);
+    }
+    .plot_wrapper {
+        width: 90%;
+        max-height: 150px;
+    }
+    .plot {
+        font-size: 1.1rem;
+    }
+    .icon {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-device-width: 500px) and (orientation:portrait) {}

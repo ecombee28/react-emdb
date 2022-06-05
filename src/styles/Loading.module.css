@@ -1,0 +1,31 @@
+.main_wrapper {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: baseline
+}
+
+.spinner_wrapper {
+    width: 250px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 500;
+}

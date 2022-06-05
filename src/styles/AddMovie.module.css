@@ -1,0 +1,69 @@
+.movie_container .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 16px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -1px;
+    right: 120%;
+}
+
+.movie_container .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+.movie_container:hover .tooltiptext {
+    visibility: visible;
+}
+
+.movie_container {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--red);
+    background-color: var(--movieConBlack);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    z-index: 40;
+    transition: all .4s ease-in-out;
+    position: relative;
+}
+
+.movie_container:hover {
+    background-color: var(--white);
+    color: var(--red);
+}
+
+.icons {
+    width: clamp(.9em, 1.1vw, 1.1vw);
+    object-fit: contain;
+    font-size: .8em;
+    z-index: 50;
+}
+
+.loader {
+    width: 45px;
+    object-fit: cover;
+}
+
+@media screen and (max-width:1024px) {
+    .movie_container:hover .tooltiptext {
+        visibility: hidden;
+    }
+}

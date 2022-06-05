@@ -1,0 +1,151 @@
+.header {
+    width: 100%;
+    height: auto;
+    padding: 1px 5%;
+    z-index: 90;
+    margin: 0;
+    color: var(--white);
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition-timing-function: ease-in;
+    transition: all.5s;
+
+}
+
+.header_black {
+    background-color: var(--black);
+}
+
+.nav_list {
+    padding-right: 150px;
+    margin: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 2vw;
+    position: relative;
+}
+
+.nav_list li {
+    list-style: none;
+}
+
+.nav_links {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    font-size: clamp(1em, 1vw, 1.2vw);
+    text-decoration: none;
+}
+
+.link_color {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.mobile_logo {
+    font-size: clamp(1.6rem, 2.2vw, 2.4vw);
+    color: var(--logoRed);
+    font-weight: bold;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    z-index: 50;
+    display: none;
+}
+
+.logo {
+    font-size: clamp(1.4rem, 2vw, 2.4vw);
+    color: var(--logoRed);
+    font-weight: bold;
+    padding: 0;
+    cursor: pointer;
+}
+
+.nav_list li:nth-child(2) {
+    margin-left: auto;
+}
+
+.nav_text::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid var(--red);
+    opacity: 0;
+    transform: scale(0, 1);
+    transition: all ease-in 400ms;
+}
+
+.nav_text {
+    cursor: pointer;
+}
+
+.nav_text:hover::after {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.icons {
+    width: clamp(.9em, 1vw, 1vw);
+    object-fit: contain;
+    font-size: .8em;
+    margin-right: 10px;
+}
+
+@media only screen and (max-device-width: 1024px) and (orientation:portrait) {
+    .header_black {
+        display: none;
+    }
+
+    .nav_list {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .mobile_logo {
+        display: block;
+    }
+
+    .nav_links {
+        display: none;
+    }
+
+    .nav_text:hover::after {
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+    .header_black {
+        display: none;
+    }
+
+    .nav_list {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .mobile_logo {
+        display: block;
+    }
+
+    .nav_links {
+        display: none;
+    }
+
+    .nav_text:hover::after {
+        opacity: 0;
+    }
+}
