@@ -13,7 +13,7 @@ const IMDB_API_KEY = process.env.REACT_APP_IMDB_API_KEY;
 export const getMovieDetails = async (id) => {
   try {
     const movieData = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id.id}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/${id.movieId}?api_key=${API_KEY}`
     );
     const res = await movieData.data;
 
@@ -36,7 +36,7 @@ export const getMovieDetails = async (id) => {
 export const getTvDetails = async (id) => {
   try {
     const movieData = await axios.get(
-      `https://api.themoviedb.org/3/tv/${id.id}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/tv/${id.movieId}?api_key=${API_KEY}`
     );
     const res = await movieData.data;
 
@@ -55,7 +55,7 @@ export const getTvDetails = async (id) => {
 export async function getTrailer(type, id) {
   try {
     const fetchData = await axios.get(
-      `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${type}/${id.movieId}/videos?api_key=${API_KEY}&language=en-US`
     );
 
     const trailer = await fetchData.data.results.filter((t) => {
@@ -77,7 +77,7 @@ export async function getTrailer(type, id) {
 export async function getRecommended(type, id) {
   try {
     const fetchData = await axios.get(
-      `https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${API_KEY}&with_original_language=en&language=en-US&page=1`
+      `https://api.themoviedb.org/3/${type}/${id.movieId}/recommendations?api_key=${API_KEY}&with_original_language=en&language=en-US&page=1`
     );
     return fetchData.data;
   } catch (error) {
@@ -94,7 +94,7 @@ export async function getRecommended(type, id) {
 export async function getCredits(type, id) {
   try {
     const fetchData = await axios.get(
-      `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${type}/${id.movieId}/credits?api_key=${API_KEY}&language=en-US`
     );
     if (fetchData.data.cast.length > 6) {
       return fetchData.data.cast.slice(0, 6);
@@ -166,7 +166,7 @@ export async function addMovieToWatchList(id, movieId, type, name, imagePath) {
  * @param {*} id
  * @returns
  */
-export async function removeMovieToWatchList(movieId, id) {
+export async function removeMovieFromWatchList(movieId, id) {
   try {
     const fetchData = await axios.post(
       `https://combeecreations.com/emdbapi/public/api/deletemovies`,
@@ -176,6 +176,51 @@ export async function removeMovieToWatchList(movieId, id) {
       }
     );
     return fetchData.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/**
+ *
+ * @param {*} movieId
+ * @param {*} id
+ * @returns
+ */
+export async function getCollections(page, company) {
+  console.log("company ", page);
+  try {
+    const fetchData = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&vote_count.gte=500&with_companies=${company}&with_original_language=en`
+    );
+
+    return fetchData.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/**
+ *
+ * @param {*} movieId
+ * @param {*} id
+ * @returns
+ */
+export async function getSearchResults(query) {
+  try {
+    const fetchData = await axios.get(
+      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&with_original_language=en&language=en-US&query=${query}&page=1&include_adult=false`
+    );
+    return fetchData.data.results;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getStarWarsMovies() {
+  try {
+    const fetchData = await axios.get(Requests.fetchStarWarsMovies);
+    return fetchData.data.parts;
   } catch (error) {
     console.error(error);
   }

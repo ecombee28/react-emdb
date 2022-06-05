@@ -21,7 +21,7 @@ export default function Nav() {
         setShow(false);
       }
     });
-  });
+  }, []);
 
   return (
     <>

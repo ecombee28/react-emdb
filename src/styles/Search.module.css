@@ -158,6 +158,7 @@
         margin-bottom: 110px;
         gap: 20px;
     }
+
     .search_results {
         width: 90%;
         margin-bottom: 80px;
@@ -168,6 +169,7 @@
         flex-grow: 1;
         gap: 20px;
     }
+
     .explore_results {
         margin-bottom: 130px;
     }
@@ -184,6 +186,7 @@
         flex-grow: 1;
         gap: 50px;
     }
+
     .explore_results {
         margin-bottom: 130px;
     }
@@ -198,6 +201,7 @@
         display: flex;
         place-content: center space-around;
     }
+
     .title_container {
         width: 80%;
         margin-left: 50px;
@@ -205,12 +209,15 @@
         justify-content: flex-start;
         align-items: center;
     }
+
     .title {
         font-size: 1.4rem;
     }
+
     .explore_results {
         margin-bottom: 120px;
     }
+
     .explore_posters {
         width: 100%;
         max-width: 320px;
@@ -220,10 +227,12 @@
         position: relative;
         text-align: center;
     }
+
     .dc_img {
         width: 60%;
         object-fit: contain;
     }
+
     .no_results p {
         padding: 0;
         font-size: 1.5rem;
@@ -235,6 +244,7 @@
         height: 70px;
         font-size: 20px;
     }
+
     .title_container {
         width: 100%;
         margin-left: 0px;
@@ -242,9 +252,11 @@
         justify-content: center;
         align-items: center;
     }
+
     .title {
         font-size: 1.2rem;
     }
+
     .search_results {
         width: 90%;
         margin-bottom: 80px;
@@ -255,9 +267,11 @@
         flex-grow: 1;
         gap: 20px;
     }
+
     .explore_results {
         margin-bottom: 80px;
     }
+
     .explore_posters {
         width: 100%;
         height: 220px;
@@ -265,10 +279,12 @@
         position: relative;
         text-align: center;
     }
+
     .dc_img {
         width: 60%;
         object-fit: contain;
     }
+
     .no_results p {
         padding: 0;
         font-size: 1rem;
@@ -280,6 +296,7 @@
         height: 70px;
         font-size: 20px;
     }
+
     .title_container {
         width: 100%;
         margin-left: 0px;
@@ -287,9 +304,11 @@
         justify-content: center;
         align-items: center;
     }
+
     .title {
         font-size: 1rem;
     }
+
     .search_results {
         width: 90%;
         display: flex;
@@ -299,9 +318,11 @@
         flex-grow: 1;
         gap: 20px;
     }
+
     .explore_results {
         margin-bottom: 80px;
     }
+
     .explore_posters {
         width: 350px;
         height: 220px;
@@ -310,10 +331,12 @@
         position: relative;
         text-align: center;
     }
+
     .dc_img {
         width: 70%;
         object-fit: contain;
     }
+
     .no_results p {
         font-size: .9rem;
     }
