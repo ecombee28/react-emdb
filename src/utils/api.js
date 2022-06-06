@@ -199,11 +199,9 @@ export async function getCollections(page, company) {
     console.error(error);
   }
 }
-
 /**
  *
- * @param {*} movieId
- * @param {*} id
+ * @param {*} query
  * @returns
  */
 export async function getSearchResults(query) {
@@ -212,6 +210,23 @@ export async function getSearchResults(query) {
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&with_original_language=en&language=en-US&query=${query}&page=1&include_adult=false`
     );
     return fetchData.data.results;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getUsersMovies(userId, setMovies, setLoading) {
+  try {
+    const usersMovies = await axios.post(
+      `https://combeecreations.com/emdbapi/public/api/movies`,
+      {
+        userId: userId,
+      }
+    );
+
+    await setMovies(usersMovies.data.Movies);
+
+    setLoading(false);
   } catch (error) {
     console.error(error);
   }
@@ -344,7 +359,7 @@ export async function login(userNameInput, password) {
  * @param {*} setLoading
  * @returns
  */
-export async function SignUpUser(userNameInput, password, setLoading) {
+export async function SignUpUser(userNameInput, password) {
   try {
     const addUser = await axios.post(
       `https://combeecreations.com/emdbapi/public/api/adduser`,

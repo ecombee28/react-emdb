@@ -16,7 +16,6 @@ export default function SignUp({ changeView }) {
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
-  const [apiData, setApiData] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,10 +23,6 @@ export default function SignUp({ changeView }) {
   const addUser = (id, username) => {
     dispatch(setUserId(id));
     dispatch(loginUser(username));
-
-    // if (movies) {
-    //   movies.map((m) => dispatch(setMovies(m)));
-    // }
   };
 
   const handleValidation = async () => {
@@ -45,12 +40,7 @@ export default function SignUp({ changeView }) {
     if (handleRes) {
       setLoading(true);
 
-      const userResponse = await SignUpUser(
-        userNameInput,
-        password,
-        setLoading,
-        navigate
-      );
+      const userResponse = await SignUpUser(userNameInput, password);
 
       if (userResponse.status === "success") {
         addUser(userResponse.id, userResponse.user);

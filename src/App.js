@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Movie from "../src/Components/Movie";
 import Home from "./Components/Home";
@@ -7,22 +7,31 @@ import Search from "../src/Components/Search";
 import Collections from "../src/Components/Collections";
 import Watchlist from "../src/Components/Watchlist";
 import LoginIndex from "./utils/LoginIndex";
+import { UserContext } from "./utils/UserContext";
+import Cookie from "js-cookie";
 
 function App() {
-  //search/collections/disney
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    setValue(Cookie.get("username"));
+  }, []);
+
   return (
     <div>
-      <BrowserRouter>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movie/:movieId" element={<Movie />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/search/collections" element={<Collections />} />
-          <Route path="/watchlist" element={<Watchlist />} />
-          <Route path="/login" element={<LoginIndex />} />
-        </Routes>
-      </BrowserRouter>
+      <UserContext.Provider value={{ value, setValue }}>
+        <BrowserRouter>
+          <Nav />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/movie/:movieId" element={<Movie />} />
+            <Route exact path="/search" element={<Search />} />
+            <Route exact path="/search/collections" element={<Collections />} />
+            <Route exact path="/watchlist" element={<Watchlist />} />
+            <Route exact path="/login" element={<LoginIndex />} />
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
     </div>
   );
 }

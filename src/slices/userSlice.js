@@ -7,28 +7,23 @@ const initialState = {
   avatar: null,
   movies: [],
 };
-//Cookie.set("id", loggedInUser.id, { expires: 1 });
-//Cookie.set("username", loggedInUser.user, { expires: 1 });
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     setUserId: (state, action) => {
       state.id = action.payload;
-      localStorage.setItem("id", action.payload);
-
       Cookie.set("id", action.payload, {
         expires: 1,
       });
     },
     loginUser: (state, action) => {
       state.username = action.payload;
-      localStorage.setItem("username", action.payload);
       Cookie.set("username", action.payload, { expires: 1 });
     },
     setAvatarId: (state, action) => {
       state.avatar = action.payload;
-      localStorage.setItem("avatar", action.payload);
     },
     setMovies: (state, action) => {
       state.movies = [...state.movies, action.payload];

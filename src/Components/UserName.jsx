@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "../styles/Username.module.css";
 import Cookie from "js-cookie";
+import { UserContext } from "../utils/UserContext";
 
 const UserName = ({ username }) => {
   const [loading, setLoading] = useState(false);
+  const { setValue } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const logout = () => {
     setLoading(true);
     Cookie.remove("id");
     Cookie.remove("username");
+    localStorage.removeItem("id");
+    localStorage.removeItem("username");
 
     setTimeout(() => {
-      <Navigate replace to="/" />;
+      setValue(null);
+      navigate("/");
     }, 3000);
 
     setTimeout(() => {
@@ -20,18 +26,19 @@ const UserName = ({ username }) => {
     }, 4000);
   };
 
+  console.log(username);
   return (
     <div className={style.container}>
-      {/* {loading ? (
-        <Loader type="ThreeDots" color="#fff" height="50" width="50" />
-      ) : ( */}
-      <div>
-        <p className={style.p}>{username}</p>
-        <p className={style.logout} onClick={logout}>
-          Sign Out
-        </p>
-      </div>
-      {/* )} */}
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        <div>
+          <p className={style.p}>{username}</p>
+          <p className={style.logout} onClick={logout}>
+            Sign Out
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "../styles/Login.module.css";
 import { HandleLoginValidation } from "../lib/HandleLoginValidation";
-import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api";
 import { useDispatch } from "react-redux";
 import { loginUser, setUserId, setMovies } from "../slices/userSlice";
+import { UserContext } from "../utils/UserContext";
 
 export default function Login({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -16,6 +16,7 @@ export default function Login({ changeView }) {
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
+  const { setValue } = useContext(UserContext);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Login({ changeView }) {
   const addUser = (id, username, movies) => {
     dispatch(setUserId(id));
     dispatch(loginUser(username));
+    setValue(username);
 
     if (movies) {
       movies.map((m) => dispatch(setMovies(m)));

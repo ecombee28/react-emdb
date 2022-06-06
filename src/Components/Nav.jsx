@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import navStyles from "../styles/Nav.module.css";
 import { Link } from "react-router-dom";
 import { faHome, faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Username from "./UserName";
-import Cookie from "js-cookie";
+import { UserContext } from "../utils/UserContext";
 
 export default function Nav() {
   const [show, setShow] = useState(false);
-  const [id, setId] = useState("");
-  const [username, setUsername] = useState("");
+  const { value } = useContext(UserContext);
 
   useEffect(() => {
-    setId(Cookie.get("id"));
-    setUsername(Cookie.get("username"));
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         setShow(true);
@@ -21,10 +18,10 @@ export default function Nav() {
         setShow(false);
       }
     });
-  }, [id]);
+  }, []);
 
   return (
-    <>
+    <div>
       <p className={navStyles.mobile_logo}>EMDB</p>
       <header
         className={`${navStyles.header} ${show && navStyles.header_black}`}
@@ -46,7 +43,6 @@ export default function Nav() {
           <li className={navStyles.nav_links}>
             <Link to="/search">
               <p className={navStyles.nav_text}>
-                {" "}
                 {
                   <FontAwesomeIcon
                     icon={faSearch}
@@ -67,8 +63,8 @@ export default function Nav() {
             </Link>
           </li>
 
-          {id ? (
-            <Username username={username} />
+          {value ? (
+            <Username username={value} />
           ) : (
             <li className={navStyles.nav_links}>
               <Link to="/login">
@@ -78,6 +74,6 @@ export default function Nav() {
           )}
         </nav>
       </header>
-    </>
+    </div>
   );
 }
