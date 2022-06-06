@@ -383,3 +383,30 @@ export async function SignUpUser(userNameInput, password) {
     console.error(error);
   }
 }
+
+export async function getCastMemberInfo(id) {
+  try {
+    const data = await axios.get(
+      `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}&language=en-US`
+    );
+    const results = await data.data;
+
+    const filmRoles = await results.cast
+      .filter((per) => per.vote_count > 100)
+      .sort((a, b) =>
+        (a.release_date || a.first_air_date) <
+        (b.release_date || b.first_air_date)
+          ? 1
+          : -1
+      );
+
+    const castInfo = await axios.get(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US`
+    );
+    const personDetail = await castInfo.data;
+
+    return { personDetail, filmRoles };
+  } catch (error) {
+    console.error(error);
+  }
+}

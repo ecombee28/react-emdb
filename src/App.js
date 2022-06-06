@@ -7,6 +7,7 @@ import Search from "../src/Components/Search";
 import Collections from "../src/Components/Collections";
 import Watchlist from "../src/Components/Watchlist";
 import LoginIndex from "./utils/LoginIndex";
+import Person from "../src/Components/Person";
 import { UserContext } from "./utils/UserContext";
 import Cookie from "js-cookie";
 
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     setValue(Cookie.get("username"));
-  }, []);
+  }, [value]);
 
   return (
     <div>
@@ -29,6 +30,7 @@ function App() {
             <Route exact path="/search/collections" element={<Collections />} />
             <Route exact path="/watchlist" element={<Watchlist />} />
             <Route exact path="/login" element={<LoginIndex />} />
+            <Route exact path="/person/:personId" element={<Person />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

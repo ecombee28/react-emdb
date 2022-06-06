@@ -26,7 +26,6 @@ const UserName = ({ username }) => {
     }, 4000);
   };
 
-  console.log(username);
   return (
     <div className={style.container}>
       {loading ? (

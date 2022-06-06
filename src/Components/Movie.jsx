@@ -7,7 +7,7 @@ import RatingsLogo from "./RatingsLogo";
 import Cast from "./Cast";
 import Trailer from "./Trailer";
 import ImagePaths from "../lib/ImagePaths";
-import AddMovie from "./AddMovies";
+import AddMovies from "./AddMovies";
 import Cookies from "js-cookie";
 import Recommended from "./List";
 import { getGenre, getYear } from "../test";
@@ -23,7 +23,7 @@ import {
 function Movie() {
   const [movie, setMovies] = useState([]);
   const [trailer, setTrailer] = useState([]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(null);
   const [recommended, setRecommend] = useState([]);
   const [cast, setCast] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ function Movie() {
   useEffect(() => {
     const callMovies = async () => {
       const movieData = await getMovieDetails({ movieId });
-      const countNumber = await getMovieCount(userId, { movieId });
+      const countNumber = await getMovieCount(userId, movieId);
       const trailer = await getTrailer("movie", { movieId });
       const rec = await getRecommended("movie", { movieId });
       const castData = await getCredits("movie", { movieId });
@@ -52,13 +52,7 @@ function Movie() {
 
   return (
     <div>
-      <>
-        {/* <Head>
-        <title>{`${movie.title}/EMDB`}</title>
-        <meta name="keywords" content="web dev" />
-        <link rel="shortcut icon" href="logo.ico" />
-      </Head> */}
-
+      <div>
         {loading ? (
           <h1>Loading...</h1>
         ) : (
@@ -106,7 +100,7 @@ function Movie() {
                 </button>
                 {userId && (
                   <div className={movieInfoStyle.add_movie}>
-                    <AddMovie
+                    <AddMovies
                       movie_id={movie.id}
                       media_type={"movie"}
                       name={movie.title}
@@ -163,7 +157,7 @@ function Movie() {
             </div>
           </div>
         )}
-      </>
+      </div>
     </div>
   );
 }
