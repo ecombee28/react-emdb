@@ -10,6 +10,7 @@ import ImagePaths from "../lib/ImagePaths";
 import AddMovies from "./AddMovies";
 import Cookies from "js-cookie";
 import Recommended from "./List";
+import CircularProgress from "@mui/material/CircularProgress";
 import { getGenre, getYear } from "../test";
 import { useParams } from "react-router-dom";
 import {
@@ -50,11 +51,26 @@ function Movie() {
     callMovies();
   }, [movieId]);
 
+  function setLoadingVisible() {
+    if (loading) return "visible";
+    else return "hidden";
+  }
+
   return (
     <div>
       <div>
         {loading ? (
-          <h1>Loading...</h1>
+          <CircularProgress
+            size={60}
+            thickness={15}
+            sx={{
+              color: "white",
+              position: "absolute",
+              right: "40%",
+              top: "40%",
+              visibility: setLoadingVisible(),
+            }}
+          />
         ) : (
           <div>
             {showTrailer && (

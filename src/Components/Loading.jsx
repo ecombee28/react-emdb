@@ -1,5 +1,5 @@
 import React from "react";
-// import Loader from "react-loader-spinner";
+import CircularProgress from "@mui/material/CircularProgress";
 import style from "../styles/Loading.module.css";
 
 const Loading = () => {

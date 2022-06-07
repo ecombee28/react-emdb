@@ -3,7 +3,7 @@ import searchStyles from "../styles/Search.module.css";
 
 export default function CollectionComponent({ dataObj, image, backColor }) {
   return (
-    <Link to={"../search/collections"} state={{ data: dataObj }}>
+    <Link to={"/search/collections"} state={{ data: dataObj }}>
       <div
         className={`${searchStyles.search_posters} ${searchStyles.explore_posters} ${backColor}`}
       >

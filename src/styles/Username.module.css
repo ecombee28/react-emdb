@@ -1,5 +1,5 @@
 .container {
-    width: 100px;
+    width: 160px;
     padding: 1px;
     cursor: pointer;
     position: relative;
@@ -18,10 +18,12 @@
 .p {
     color: var(--white);
     transition: all .4s ease-in-out;
+    font-size: 1.3rem;
 }
 
 .logout {
     display: none;
     color: var(--white);
     transition: all .4s ease-in-out;
+    font-size: 1.3rem;
 }

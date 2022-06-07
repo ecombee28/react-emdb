@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Movie from "../src/Components/Movie";
 import Home from "./Components/Home";
@@ -8,19 +8,12 @@ import Collections from "../src/Components/Collections";
 import Watchlist from "../src/Components/Watchlist";
 import LoginIndex from "./utils/LoginIndex";
 import Person from "../src/Components/Person";
-import { UserContext } from "./utils/UserContext";
-import Cookie from "js-cookie";
+import { UserProvider } from "../src/utils/UserContext";
 
 function App() {
-  const [value, setValue] = useState(null);
-
-  useEffect(() => {
-    setValue(Cookie.get("username"));
-  }, [value]);
-
   return (
     <div>
-      <UserContext.Provider value={{ value, setValue }}>
+      <UserProvider>
         <BrowserRouter>
           <Nav />
           <Routes>
@@ -33,7 +26,7 @@ function App() {
             <Route exact path="/person/:personId" element={<Person />} />
           </Routes>
         </BrowserRouter>
-      </UserContext.Provider>
+      </UserProvider>
     </div>
   );
 }

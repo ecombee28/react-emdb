@@ -3,8 +3,6 @@ export const getAgeOfDeath = (birth, death) => {
     let birthYear,
       deathYear,
       ageOfDeath,
-      deathMonth,
-      birthMonth,
       birthDay,
       deathDay,
       parsedBirth,
@@ -15,21 +13,10 @@ export const getAgeOfDeath = (birth, death) => {
 
     birthYear = parsedBirth[0];
     deathYear = parsedDeath[0];
-    birthMonth = parsedBirth[1];
-    deathMonth = parsedDeath[1];
     birthDay = parsedBirth[2];
     deathDay = parsedDeath[2];
 
-    //if they died on their birth month
-    if (deathMonth == birthMonth) {
-      //if they died before there birthday
-      if (deathDay < birthDay) {
-        ageOfDeath = deathYear - birthYear - 1;
-      } else {
-        ageOfDeath = deathYear - birthYear;
-      }
-      //if they died before there birthday
-    } else if (deathMonth < birthMonth) {
+    if (deathDay < birthDay) {
       ageOfDeath = deathYear - birthYear - 1;
     } else {
       ageOfDeath = deathYear - birthYear;

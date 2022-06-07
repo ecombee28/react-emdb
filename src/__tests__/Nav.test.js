@@ -1,32 +1,21 @@
-import { render, screen } from "@testing-library/react";
-import Nav from "../components/Nav";
+import React from "react";
+import { render, screen, cleanup } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import Nav from "../Components/Nav";
+import userEvent from "@testing-library/user-event";
+import { createMemoryHistory } from "history";
 
-// include as many test cases as you want here
-const links = [
-  { text: "Home", location: "/" },
-  { text: "Search", location: "/search" },
-  { text: "Watch List", location: "/watchlist" },
-  { text: "Sign In/Sign Up", location: "/login" },
-];
+describe("testing the nav bar", function () {
+  afterEach(cleanup);
+  test("testing each link to make sure that the pathname is correct", function () {
+    const history = createMemoryHistory();
 
-describe("testing to nav bar", () => {
-  it("has all the links in the nav bar", () => {
-    render(<Nav />);
-
-    expect(screen.getAllByRole("listitem")).toHaveLength(5);
+    render(
+      <BrowserRouter history={history}>
+        <Nav />
+      </BrowserRouter>
+    );
+    userEvent.click(screen.getByRole("link", { name: "Home" }));
+    expect(history.location.pathname).toEqual("/");
   });
-
-  test.each(links)("each link name is correct", (link) => {
-    render(<Nav />);
-
-    const linkName = screen.getByText(link.text);
-    expect(linkName).toBeInTheDocument();
-  });
-
-  // test.each(links)("each link has the correct href", (link) => {
-  //   render(<Nav />);
-
-  //   const linkName = screen.getByText(link.text);
-  //   expect(linkName).toHaveAttribute("href", link.location);
-  // });
 });

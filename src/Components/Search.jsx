@@ -84,21 +84,25 @@ const Search = () => {
               dataObj={disneyObj}
               image={disneyText}
               backColor={searchStyles.disney}
+              data-testid="disney-results"
             />
             <CollectionComponent
               dataObj={marvelObj}
               image={marvelText}
               backColor={searchStyles.marvel}
+              data-testid="marvel-results"
             />
             <CollectionComponent
               dataObj={dcObj}
               image={dcText}
               backColor={searchStyles.dc}
+              data-testid="dc-results"
             />
             <CollectionComponent
               dataObj={starwarsObj}
               image={starWarsText}
               backColor={searchStyles.starwars}
+              data-testid="starwars-results"
             />
           </main>
         </>

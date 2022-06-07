@@ -1,12 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/Username.module.css";
 import Cookie from "js-cookie";
-import { UserContext } from "../utils/UserContext";
+import { useNameUpdate } from "../utils/UserContext";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const UserName = ({ username }) => {
   const [loading, setLoading] = useState(false);
-  const { setValue } = useContext(UserContext);
+  const setUserName = useNameUpdate();
   const navigate = useNavigate();
 
   const logout = () => {
@@ -17,7 +18,7 @@ const UserName = ({ username }) => {
     localStorage.removeItem("username");
 
     setTimeout(() => {
-      setValue(null);
+      setUserName();
       navigate("/");
     }, 3000);
 
@@ -29,7 +30,7 @@ const UserName = ({ username }) => {
   return (
     <div className={style.container}>
       {loading ? (
-        <p>loading</p>
+        <CircularProgress size={30} thickness={7} sx={{ color: "red" }} />
       ) : (
         <div>
           <p className={style.p}>{username}</p>

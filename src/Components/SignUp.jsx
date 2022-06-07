@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import style from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { HandleSignUpValidation } from "../lib/HandleSignUpValidation";
 import { SignUpUser } from "../utils/api";
-import { loginUser, setUserId, setMovies } from "../slices/userSlice";
+import { useNameUpdate } from "../utils/UserContext";
+import Cookie from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function SignUp({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("hidden");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userInput, setUserInput] = useState(true);
   const [passInput, setPassInput] = useState(false);
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
+  const setUserName = useNameUpdate();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const addUser = (id, username) => {
-    dispatch(setUserId(id));
-    dispatch(loginUser(username));
-  };
 
   const handleValidation = async () => {
     const handleRes = HandleSignUpValidation(
@@ -38,66 +34,28 @@ export default function SignUp({ changeView }) {
     );
 
     if (handleRes) {
-      setLoading(true);
+      setLoading("visible");
 
       const userResponse = await SignUpUser(userNameInput, password);
 
       if (userResponse.status === "success") {
-        addUser(userResponse.id, userResponse.user);
-
+        Cookie.set("id", userResponse.id, {
+          expires: 1,
+        });
+        Cookie.set("username", userResponse.user, {
+          expires: 1,
+        });
+        setUserName();
         navigate("/");
-        setLoading(false);
+        setLoading("hidden");
       } else {
         setError(true);
         setPassword("");
         setConfirmPassword("");
-        setLoading(false);
+        setLoading("hidden");
       }
     }
   };
-
-  // const signIn = () => {
-  //   setLoading(true);
-
-  //   // axios
-  //   //   .post(`https://combeecreations.com/emdbapi/public/api/adduser`, {
-  //   //     username: userNameInput,
-  //   //     password: password,
-  //   //   })
-  //   //   .then((response) => {
-  //   //     if (response.data.status === "success") {
-  //   //       axios
-  //   //         .post(`https://combeecreations.com/emdbapi/public/api/movies`, {
-  //   //           userId: response.data.id,
-  //   //         })
-  //   //         .then((res) => {
-  //   //           addUser(response.data.id, response.data.user, res.data.Movies);
-
-  //   //           navigate("/");
-  //   //           setLoading(false);
-  //   //         });
-  //   //     } else {
-  //   //       localStorage.setItem(
-  //   //         "error_message",
-  //   //         JSON.stringify(response.data.error_message)
-  //   //       );
-  //   //       setError(true);
-  //   //       setPassword("");
-  //   //       setConfirmPassword("");
-  //   //       setLoading(false);
-  //   //     }
-  //   //   });
-
-  //   // const addUser = (id, username, movies) => {
-  //   //   dispatch(setUserId(id));
-  //   //   dispatch(loginUser(username));
-
-  //   //   if (movies) {
-  //   //     movies.map((m) => dispatch(setMovies(m)));
-  //   //   }
-  //   // };
-  // };
-
   const inputErrorStyle = {
     top: "55%",
   };
@@ -160,9 +118,17 @@ export default function SignUp({ changeView }) {
           </label>
           <button className={style.submit_btn} onClick={handleValidation}>
             Sign Up
-            {loading && (
-              <img src="/loading.gif" alt="" className={style.loader} />
-            )}
+            <CircularProgress
+              size={25}
+              thickness={4}
+              sx={{
+                color: "white",
+                position: "absolute",
+                right: "60px",
+                top: "10px",
+                visibility: loading,
+              }}
+            />
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>All ready a member?</p>

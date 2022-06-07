@@ -1,35 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import style from "../styles/Login.module.css";
 import { HandleLoginValidation } from "../lib/HandleLoginValidation";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api";
-import { useDispatch } from "react-redux";
-import { loginUser, setUserId, setMovies } from "../slices/userSlice";
-import { UserContext } from "../utils/UserContext";
+import { useNameUpdate } from "../utils/UserContext";
+import Cookie from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Login({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("hidden");
   const [password, setPassword] = useState("");
   const [userInput, setUserInput] = useState(true);
   const [passInput, setPassInput] = useState(false);
   const [error, setError] = useState(false);
   const [userError, setUserError] = useState("");
   const [passError, setPassError] = useState("");
-  const { setValue } = useContext(UserContext);
+  const setUserName = useNameUpdate();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const addUser = (id, username, movies) => {
-    dispatch(setUserId(id));
-    dispatch(loginUser(username));
-    setValue(username);
-
-    if (movies) {
-      movies.map((m) => dispatch(setMovies(m)));
-    }
-  };
   const handleValidation = async () => {
     const handleRes = HandleLoginValidation(
       userNameInput,
@@ -41,18 +31,24 @@ export default function Login({ changeView }) {
     );
 
     if (handleRes) {
-      setLoading(true);
+      setLoading("visible");
 
       const userResponse = await login(userNameInput, password);
 
       if (userResponse.status === "success") {
-        addUser(userResponse.id, userResponse.user, userResponse.movies);
+        Cookie.set("id", userResponse.id, {
+          expires: 1,
+        });
+        Cookie.set("username", userResponse.user, {
+          expires: 1,
+        });
+        setUserName();
         navigate("/");
-        setLoading(false);
+        setLoading("hidden");
       } else {
         setError(true);
         setPassword("");
-        setLoading(false);
+        setLoading("hidden");
       }
     }
   };
@@ -106,9 +102,17 @@ export default function Login({ changeView }) {
             onClick={handleValidation}
           >
             Sign In
-            {loading && (
-              <img src="/loading.gif" alt="" className={style.loader} />
-            )}
+            <CircularProgress
+              size={25}
+              thickness={4}
+              sx={{
+                color: "white",
+                position: "absolute",
+                right: "60px",
+                top: "10px",
+                visibility: loading,
+              }}
+            />
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>New to EMDB?</p>

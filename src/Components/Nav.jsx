@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import navStyles from "../styles/Nav.module.css";
 import { Link } from "react-router-dom";
 import { faHome, faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Username from "./UserName";
-import { UserContext } from "../utils/UserContext";
+import { useName, useNameUpdate } from "../utils/UserContext";
 
 export default function Nav() {
   const [show, setShow] = useState(false);
-  const { value } = useContext(UserContext);
+  const userName = useName();
+  const setUserName = useNameUpdate();
 
   useEffect(() => {
+    setUserName();
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         setShow(true);
@@ -18,7 +20,7 @@ export default function Nav() {
         setShow(false);
       }
     });
-  }, []);
+  }, [setUserName]);
 
   return (
     <div>
@@ -63,8 +65,8 @@ export default function Nav() {
             </Link>
           </li>
 
-          {value ? (
-            <Username username={value} />
+          {userName ? (
+            <Username username={userName} />
           ) : (
             <li className={navStyles.nav_links}>
               <Link to="/login">
