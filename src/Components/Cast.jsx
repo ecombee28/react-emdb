@@ -2,10 +2,10 @@ import React from "react";
 import style from "../styles/Cast.module.css";
 import { Link } from "react-router-dom";
 import ImagePaths from "../lib/ImagePaths";
+import BlankImage from "../assets/blank-profile-picture.png";
 
 const Cast = ({ castMember }) => {
   const castImage = ImagePaths.w500 + castMember.profile_path;
-  const blankImage = "/blank-profile-picture.png";
 
   return (
     <Link to={`/person/${castMember.id}`}>
@@ -13,7 +13,7 @@ const Cast = ({ castMember }) => {
         <div className={style.image_wrapper}>
           <img
             className={style.cast__img}
-            src={castMember.profile_path === null ? blankImage : castImage}
+            src={castMember.profile_path === null ? BlankImage : castImage}
             alt="no-profile"
           />
         </div>

@@ -154,7 +154,8 @@ export async function addMovieToWatchList(id, movieId, type, name, imagePath) {
         imagePath: imagePath,
       }
     );
-    return fetchData.data;
+
+    return fetchData.data.Movie_added;
   } catch (error) {
     console.error(error);
   }
@@ -175,7 +176,7 @@ export async function removeMovieFromWatchList(movieId, id) {
         userId: id,
       }
     );
-    return fetchData.data;
+    return fetchData.data.Movie_added;
   } catch (error) {
     console.error(error);
   }

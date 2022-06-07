@@ -3,6 +3,7 @@ import LandingImage from "./LandingImage";
 import MovieList from "./List";
 import TvList from "./List";
 import style from "../styles/MainPage.module.css";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   getTrending,
   getPopular,
@@ -53,10 +54,25 @@ const Home = () => {
 
   const randomMovie = trending[Math.floor(Math.random() * trending.length - 1)];
 
+  function setLoadingVisible() {
+    if (loading) return "visible";
+    else return "hidden";
+  }
+
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <CircularProgress
+          size={100}
+          thickness={8}
+          sx={{
+            color: "white",
+            position: "absolute",
+            right: "40%",
+            top: "40%",
+            visibility: setLoadingVisible(),
+          }}
+        />
       ) : (
         <div>
           <LandingImage movie={randomMovie} />

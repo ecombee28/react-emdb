@@ -41,15 +41,15 @@ function Movie() {
       const rec = await getRecommended("movie", { movieId });
       const castData = await getCredits("movie", { movieId });
 
-      await setMovies(movieData);
-      await setCount(countNumber);
-      await setTrailer(trailer);
-      await setRecommend(rec);
-      await setCast(castData);
+      setMovies(movieData);
+      setCount(countNumber);
+      setTrailer(trailer);
+      setRecommend(rec);
+      setCast(castData);
       setLoading(false);
     };
     callMovies();
-  }, [movieId]);
+  }, [movieId, userId]);
 
   function setLoadingVisible() {
     if (loading) return "visible";
@@ -61,8 +61,8 @@ function Movie() {
       <div>
         {loading ? (
           <CircularProgress
-            size={60}
-            thickness={15}
+            size={100}
+            thickness={8}
             sx={{
               color: "white",
               position: "absolute",
@@ -120,7 +120,7 @@ function Movie() {
                       movie_id={movie.id}
                       media_type={"movie"}
                       name={movie.title}
-                      count={count}
+                      count={count[0].count}
                       imagePath={movie.backdrop_path}
                     />
                   </div>
