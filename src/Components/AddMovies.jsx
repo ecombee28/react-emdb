@@ -32,13 +32,7 @@ export default function AddMovies({
   const handleMovie = async () => {
     setLoading(true);
     if (!selected) {
-      const { response } = await addMovieToWatchList(
-        userId,
-        movie_id,
-        media_type,
-        name,
-        imagePath
-      );
+      await addMovieToWatchList(userId, movie_id, media_type, name, imagePath);
 
       setLoading(false);
       setIcon(faCheck);
