@@ -12,7 +12,7 @@ export function useNameUpdate() {
   return useContext(UserUpdateContext);
 }
 export function UserProvider({ children }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(Cookie.get("username"));
 
   function setUserName() {
     setValue(Cookie.get("username"));

@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 import { faHome, faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Username from "./UserName";
-import { useName, useNameUpdate } from "../utils/UserContext";
+import { useName } from "../utils/UserContext";
 
 export default function Nav() {
   const [show, setShow] = useState(false);
   const userName = useName();
-  const setUserName = useNameUpdate();
 
   useEffect(() => {
-    setUserName();
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         setShow(true);
@@ -20,7 +18,7 @@ export default function Nav() {
         setShow(false);
       }
     });
-  }, [setUserName]);
+  }, [userName]);
 
   return (
     <div>
@@ -35,33 +33,22 @@ export default function Nav() {
 
           <li className={navStyles.nav_links}>
             <Link to="/">
-              <p className={navStyles.nav_text}>
-                {<FontAwesomeIcon icon={faHome} className={navStyles.icons} />}
-                Home
-              </p>
+              {<FontAwesomeIcon icon={faHome} className={navStyles.icons} />}
+              Home
             </Link>
           </li>
 
           <li className={navStyles.nav_links}>
-            <Link to="/search">
-              <p className={navStyles.nav_text}>
-                {
-                  <FontAwesomeIcon
-                    icon={faSearch}
-                    className={navStyles.icons}
-                  />
-                }
-                Search
-              </p>
+            <Link to="/search" data-testid="search_link">
+              <FontAwesomeIcon icon={faSearch} className={navStyles.icons} />
+              Search
             </Link>
           </li>
 
           <li className={navStyles.nav_links}>
             <Link to="/watchlist">
-              <p className={navStyles.nav_text}>
-                {<FontAwesomeIcon icon={faPlus} className={navStyles.icons} />}
-                Watch List
-              </p>
+              {<FontAwesomeIcon icon={faPlus} className={navStyles.icons} />}
+              Watch List
             </Link>
           </li>
 
@@ -69,9 +56,7 @@ export default function Nav() {
             <Username username={userName} />
           ) : (
             <li className={navStyles.nav_links}>
-              <Link to="/login">
-                <p className={navStyles.nav_text}>Sign In/Sign Up</p>
-              </Link>
+              <Link to="/login">Sign In/Sign Up</Link>
             </li>
           )}
         </nav>

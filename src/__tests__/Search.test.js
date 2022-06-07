@@ -5,39 +5,35 @@ import Search from "../Components/Search";
 import userEvent from "@testing-library/user-event";
 
 describe("Test the default search title", () => {
-  test("if title and search bar is there", () => {
-    render(
-      <BrowserRouter>
-        <Search />
-      </BrowserRouter>
-    );
+  const movies = [
+    { name: "The Batman" },
+    { name: "The Mask" },
+    { name: "A.I." },
+    { name: "Superman" },
+  ];
 
-    const title = screen.getByText("Explore");
-    expect(title).toBeInTheDocument();
+  test.each(movies)(
+    "check if the search is displaying the correct text",
+    async (movie) => {
+      render(
+        <BrowserRouter>
+          <Search />
+        </BrowserRouter>
+      );
 
-    const searchBar = screen.getByTestId("search-input");
-    expect(searchBar).toBeInTheDocument();
-  });
+      const searchBar = screen.getByTestId("search-input");
 
-  test("check if the search is displaying the correct text", async () => {
-    render(
-      <BrowserRouter>
-        <Search />
-      </BrowserRouter>
-    );
+      userEvent.type(searchBar, movie.name);
+      await waitFor(() => {
+        expect(
+          screen.getByText(`Search Results for: ${movie.name}`)
+        ).toBeInTheDocument();
+      });
 
-    const searchBar = screen.getByTestId("search-input");
-
-    userEvent.type(searchBar, "The Batman");
-    await waitFor(() => {
-      expect(
-        screen.getByText("Search Results for: The Batman")
-      ).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      const searchBarResults = screen.getByTestId("search-input");
-      expect(searchBarResults).toHaveValue("The Batman");
-    });
-  });
+      await waitFor(() => {
+        const searchBarResults = screen.getByTestId("search-input");
+        expect(searchBarResults).toHaveValue(movie.name);
+      });
+    }
+  );
 });
