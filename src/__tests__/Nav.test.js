@@ -26,11 +26,3 @@ describe("testing the nav bar", function () {
     expect(linkDom).toHaveAttribute("href", link.location);
   });
 });
-
-// const history = createMemoryHistory();
-
-// render(
-//   <BrowserRouter history={history}>
-//     <Nav />
-//   </BrowserRouter>
-// );

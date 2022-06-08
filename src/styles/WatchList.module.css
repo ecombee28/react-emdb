@@ -38,6 +38,7 @@
 .link {
     color: var(--white);
     cursor: pointer;
+    font-size: clamp(1.2rem, 3vw, 2.2rem)
 }
 
 .link:hover {
@@ -72,6 +73,7 @@
         padding-bottom: 120px;
         justify-content: center;
     }
+
     .empty_list {
         font-size: 1rem;
         position: absolute;
@@ -79,6 +81,7 @@
         left: 50%;
         transform: translate(-50%, -45%);
     }
+
     .icons {
         width: 15%;
         font-size: 2rem;
@@ -94,6 +97,7 @@
         transform: translate(-50%, -45%);
         margin-bottom: 40px;
     }
+
     .icons {
         width: 8%;
         font-size: 2rem;

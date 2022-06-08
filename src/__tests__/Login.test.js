@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import Login from "../Components/Login";
 import userEvent from "@testing-library/user-event";
@@ -92,11 +93,10 @@ describe("testing the login component", () => {
       expect(noPassError).toBeInTheDocument();
     });
   });
-
   // test("Click on Sign up Now text to switch to the SignUp component", async () => {
   //   render(
   //     <Router>
-  //       <LoginIndex changeView={"login"} />
+  //       <Login changeView={"login"} />
   //     </Router>
   //   );
 

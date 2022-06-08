@@ -112,21 +112,4 @@ describe("testing sign up component", () => {
       expect(noPassError).toBeInTheDocument();
     });
   });
-
-  // test("Click on Sign in text to switch to the sign in component", async () => {
-  //   render(
-  //     <Router>
-  //       <SignUp changeView={"signup"} />
-  //     </Router>
-  //   );
-
-  //   const signInTextLink = screen.getByTestId("signin-text");
-
-  //   userEvent.click(signInTextLink);
-
-  //   await waitFor(() => {
-  //     const heading = screen.getByRole("heading", "Sign In");
-  //     expect(heading).toBeInTheDocument();
-  //   });
-  // });
 });

@@ -52,6 +52,8 @@ export default function Login({ changeView }) {
       }
     }
   };
+
+  const change = () => {};
   return (
     <div>
       <div className={style.main_container}> </div>
