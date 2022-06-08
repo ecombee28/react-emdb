@@ -64,7 +64,7 @@ const Home = () => {
       {loading ? (
         <CircularProgress
           size={100}
-          thickness={8}
+          thickness={5}
           sx={{
             color: "white",
             position: "absolute",
