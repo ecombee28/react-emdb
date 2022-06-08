@@ -63,7 +63,7 @@ describe("testing the login component", () => {
     const usernameInput = screen.getByTestId("userName-input");
     const passwordInput = screen.getByTestId("password-input");
 
-    //test if there is no username
+    //test if there is no userName
     fireEvent.change(usernameInput, { target: { value: blankUserName } });
     expect(usernameInput.value).toMatch(blankUserName);
 
