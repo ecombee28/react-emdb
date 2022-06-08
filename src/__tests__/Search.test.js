@@ -12,6 +12,13 @@ describe("Test the default search title", () => {
     { name: "Superman" },
   ];
 
+  const altTags = [
+    { name: "disney" },
+    { name: "marvel" },
+    { name: "dc" },
+    { name: "starwars" },
+  ];
+
   test.each(movies)(
     "check if the search is displaying the correct text",
     async (movie) => {
@@ -34,6 +41,20 @@ describe("Test the default search title", () => {
         const searchBarResults = screen.getByTestId("search-input");
         expect(searchBarResults).toHaveValue(movie.name);
       });
+    }
+  );
+
+  test.each(altTags)(
+    "that all the collection components are present",
+    (alt) => {
+      render(
+        <BrowserRouter>
+          <Search />
+        </BrowserRouter>
+      );
+
+      const name = screen.getByAltText(alt.name);
+      expect(name).toBeInTheDocument();
     }
   );
 });

@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import searchStyles from "../styles/Search.module.css";
 
-export default function CollectionComponent({ dataObj, image, backColor }) {
+export default function CollectionComponent({
+  dataObj,
+  image,
+  backColor,
+  alt,
+}) {
   return (
     <Link to={"/search/collections"} state={{ data: dataObj }}>
       <div
@@ -9,7 +14,7 @@ export default function CollectionComponent({ dataObj, image, backColor }) {
       >
         <img
           src={image}
-          alt=""
+          alt={alt}
           className={`${searchStyles.explore_img} ${
             dataObj.name === "DC" && searchStyles.dc_img
           }`}

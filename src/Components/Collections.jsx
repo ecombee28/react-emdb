@@ -61,6 +61,8 @@ export default function Collections() {
     fetchPosts();
   }, [page]);
 
+  console.log(data);
+
   return (
     <div>
       {loading ? (
@@ -68,7 +70,11 @@ export default function Collections() {
       ) : (
         <div>
           <div className={collectionStyle.video_wrapper}>
-            <img src={data.image} className={collectionStyle.image} alt="" />
+            <img
+              src={data.image}
+              className={collectionStyle.image}
+              alt={data.image}
+            />
           </div>
           <div className={collectionStyle.wrapper}>
             <div className={collectionStyle.arrow_wrapper}>
