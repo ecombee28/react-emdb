@@ -312,6 +312,8 @@
     filter: invert(0%);
 }
 
+
+
 /* MEDIA QUERY MAX-WIDTH:1300 */
 
 @media screen and (max-width:1300px) {
@@ -319,12 +321,15 @@
         width: 90%;
         height: 70vh;
     }
+
     .icon {
         width: 25px;
     }
+
     .title {
         font-size: 2.2em;
     }
+
     .movie_info_wrapper {
         padding: 15px;
         position: absolute;
@@ -332,22 +337,28 @@
         left: 2%;
         font-size: 20px;
     }
+
     .movie_info {
         width: 100%;
         font-size: 27px;
     }
+
     .rating {
         font-size: 1em;
     }
+
     .plot_wrapper {
         width: 90%;
     }
+
     .plot {
         font-size: 1.1em;
     }
+
     .trailer_button {
         font-size: 1em;
     }
+
     .icon {
         width: 15px;
     }
@@ -359,10 +370,12 @@
     .title {
         font-size: 1.9em;
     }
+
     .trailer {
         width: 90%;
         height: 70vh;
     }
+
     .movie_info_wrapper {
         width: 98%;
         padding: 15px;
@@ -371,25 +384,32 @@
         left: 2%;
         font-size: 16px;
     }
+
     .movie_info {
         width: 100%;
         font-size: 23px;
     }
+
     .rating {
         font-size: 1.3em;
     }
+
     .plot_wrapper {
         width: 90%;
     }
+
     .plot {
         font-size: 1.1em;
     }
+
     .trailer_wrapper {
         min-width: 200px;
     }
+
     .trailer_button {
         font-size: 1em;
     }
+
     .icon {
         width: 20px;
     }
@@ -401,13 +421,16 @@
     .icon {
         width: 22px;
     }
+
     .title {
         font-size: 1.9em;
     }
+
     .img {
         width: 100vw;
         height: 50vh;
     }
+
     .movie_info_wrapper {
         width: 100%;
         padding: 15px;
@@ -416,27 +439,34 @@
         left: 2%;
         font-size: 16px;
     }
+
     .movie_info {
         width: 100%;
         font-size: 23px;
     }
+
     .rating_logo {
         width: 40px;
         height: 30px;
     }
+
     .rating {
         font-size: 1.1em;
     }
+
     .plot_wrapper {
         width: 90%;
     }
+
     .plot {
         font-size: 1.1em;
     }
+
     .trailer_button {
         padding: 8px 10px;
         font-size: 1em;
     }
+
     .icon {
         width: 15px;
     }
@@ -457,10 +487,12 @@
         width: 100%;
         height: 100vh;
     }
+
     .trailer_button {
         padding: 6px 10px;
         font-size: 1em;
     }
+
     .movie_info_wrapper {
         width: 100%;
         padding: 15px;
@@ -469,38 +501,47 @@
         left: .5%;
         font-size: 16px;
     }
+
     .movie_ratings_wrapper {
         width: 220px;
         margin-top: -10px;
     }
+
     .wrap {
         flex-wrap: wrap;
         margin-right: 10px;
     }
+
     .rating_logo {
         width: 40px;
         height: 25px;
     }
+
     .rating {
         font-size: 1.1em;
         left: 49px;
     }
+
     .genre {
         font-size: .7em;
         color: var(--white);
         display: inline-block;
         margin-right: 1px;
     }
+
     .movie_info {
         width: 100%;
         font-size: 17px;
     }
+
     .plot_wrapper {
         width: 90%;
     }
+
     .plot {
         font-size: .9em;
     }
+
     .icon {
         width: 15px;
     }

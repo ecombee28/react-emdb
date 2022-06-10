@@ -4,7 +4,8 @@ import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addMovieToWatchList, removeMovieFromWatchList } from "../utils/api";
 import Cookies from "js-cookie";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loading from "./Loading";
+import { addLoadingStyle } from "../lib/getLoadingStyles";
 
 export default function AddMovies({
   movie_id,
@@ -50,23 +51,11 @@ export default function AddMovies({
     }
   };
 
-  function setLoadingVisible() {
-    if (loading) return "visible";
-    else return "hidden";
-  }
-
   return (
     <div>
       <div className={style.movie_container}>
         {loading ? (
-          <CircularProgress
-            size={20}
-            thickness={4}
-            sx={{
-              color: "red",
-              visibility: setLoadingVisible(),
-            }}
-          />
+          <Loading style={addLoadingStyle} />
         ) : (
           <FontAwesomeIcon
             icon={icon}

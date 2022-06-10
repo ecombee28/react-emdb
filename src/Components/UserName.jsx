@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import style from "../styles/Username.module.css";
 import Cookie from "js-cookie";
 import { useNameUpdate } from "../utils/UserContext";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loading from "./Loading";
+import { signOutLoadingStyle } from "../lib/getLoadingStyles";
 
 const UserName = ({ username }) => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ const UserName = ({ username }) => {
   return (
     <div className={style.container}>
       {loading ? (
-        <CircularProgress size={30} thickness={7} sx={{ color: "red" }} />
+        <Loading style={signOutLoadingStyle} />
       ) : (
         <div>
           <p className={style.p}>{username}</p>

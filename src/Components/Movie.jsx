@@ -10,9 +10,10 @@ import ImagePaths from "../lib/ImagePaths";
 import AddMovies from "./AddMovies";
 import Cookies from "js-cookie";
 import Recommended from "./List";
-import CircularProgress from "@mui/material/CircularProgress";
 import { getGenre, getYear } from "../test";
 import { useParams } from "react-router-dom";
+import Loading from "./Loading";
+import { centerLoadingStyle } from "../lib/getLoadingStyles";
 import {
   getMovieDetails,
   getTrailer,
@@ -60,17 +61,7 @@ function Movie() {
     <div>
       <div>
         {loading ? (
-          <CircularProgress
-            size={100}
-            thickness={5}
-            sx={{
-              color: "white",
-              position: "absolute",
-              right: "40%",
-              top: "40%",
-              visibility: setLoadingVisible(),
-            }}
-          />
+          <Loading style={centerLoadingStyle} />
         ) : (
           <div>
             {showTrailer && (

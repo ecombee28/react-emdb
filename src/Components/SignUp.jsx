@@ -5,7 +5,8 @@ import { HandleSignUpValidation } from "../lib/HandleSignUpValidation";
 import { SignUpUser } from "../utils/api";
 import { useNameUpdate } from "../utils/UserContext";
 import Cookie from "js-cookie";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loading from "./Loading";
+import { loginLoadingStyle } from "../lib/getLoadingStyles";
 
 export default function SignUp({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -118,17 +119,7 @@ export default function SignUp({ changeView }) {
           </label>
           <button className={style.submit_btn} onClick={handleValidation}>
             Sign Up
-            <CircularProgress
-              size={25}
-              thickness={4}
-              sx={{
-                color: "white",
-                position: "absolute",
-                right: "60px",
-                top: "10px",
-                visibility: loading,
-              }}
-            />
+            <Loading style={loginLoadingStyle} />
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>All ready a member?</p>

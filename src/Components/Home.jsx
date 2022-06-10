@@ -3,7 +3,8 @@ import LandingImage from "./LandingImage";
 import MovieList from "./List";
 import TvList from "./List";
 import style from "../styles/MainPage.module.css";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loading from "./Loading";
+import { centerLoadingStyle } from "../lib/getLoadingStyles";
 import {
   getTrending,
   getPopular,
@@ -38,41 +39,26 @@ const Home = () => {
       const romance = await getRomanceMovies();
       const topRated = await getTopRatedMovies();
 
-      await setTrending(trending);
-      await setPopular(popular);
-      await setTrendingOnNetflix(netflix);
-      await setPopularTv(popularTv);
-      await setAction(action);
-      await setComedy(comedy);
-      await setRomance(romance);
-      await setTopRated(topRated);
+      setTrending(trending);
+      setPopular(popular);
+      setTrendingOnNetflix(netflix);
+      setPopularTv(popularTv);
+      setAction(action);
+      setComedy(comedy);
+      setRomance(romance);
+      setTopRated(topRated);
 
-      await setLoading(false);
+      setLoading(false);
     };
     callMovies();
   }, []);
 
   const randomMovie = trending[Math.floor(Math.random() * trending.length - 1)];
 
-  function setLoadingVisible() {
-    if (loading) return "visible";
-    else return "hidden";
-  }
-
   return (
     <div>
       {loading ? (
-        <CircularProgress
-          size={100}
-          thickness={5}
-          sx={{
-            color: "white",
-            position: "absolute",
-            right: "40%",
-            top: "40%",
-            visibility: setLoadingVisible(),
-          }}
-        />
+        <Loading style={centerLoadingStyle} />
       ) : (
         <div>
           <LandingImage movie={randomMovie} />

@@ -1,21 +1,22 @@
 import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import style from "../styles/Loading.module.css";
 
-const Loading = () => {
+const Loading = ({ style }) => {
   return (
-    <div className={style.main_wrapper}>
-      <div className={style.spinner_wrapper}>
-        <p className={style.title}>Loading</p>
-        {/* <Loader
-          type="ThreeDots"
-          color="#fff"
-          height="70"
-          width="70"
-          className={style.loader}
-        /> */}
-      </div>
-    </div>
+    <>
+      <CircularProgress
+        size={style.size}
+        thickness={style.thickness}
+        sx={{
+          color: style.color,
+          position: style.position && style.position,
+          right: style.right && style.right,
+          top: style.top && style.top,
+          left: style.left && style.left,
+          bottom: style.bottom && style.bottom,
+        }}
+      />
+    </>
   );
 };
 
