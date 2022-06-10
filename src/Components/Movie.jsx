@@ -52,11 +52,6 @@ function Movie() {
     callMovies();
   }, [movieId, userId]);
 
-  function setLoadingVisible() {
-    if (loading) return "visible";
-    else return "hidden";
-  }
-
   return (
     <div>
       <div>

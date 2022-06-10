@@ -27,7 +27,8 @@
 }
 
 .login_container {
-    width: 450px;
+    max-width: 450px;
+    width: 85vw;
     height: auto;
     padding: 25px 0;
     display: flex;
@@ -42,7 +43,8 @@
 }
 
 .signup_container {
-    width: 450px;
+    max-width: 450px;
+    width: 85vw;
     height: auto;
     padding: 25px 0;
     display: flex;
@@ -163,18 +165,7 @@
 }
 
 @media screen and (max-width:680px) {
-    .signup_container {
-        width: 300px;
-        height: 400px;
-        top: 60%;
-        left: 50%;
-        background-color: var(--white);
-    }
 
-    .login_container {
-        width: 300px;
-        height: 400px;
-    }
 
     .login_wrapper {
         width: 90%;
@@ -227,23 +218,6 @@
 }
 
 @media screen and (max-width:680px) and (orientation:landscape) {
-    .signup_container {
-        width: 370px;
-        height: 400px;
-        background-color: rgba(0, 0, 0, .82);
-        top: 5%;
-        left: 50%;
-        bottom: 340px;
-        transform: translate(-50%, 0);
-    }
-
-    .login_container {
-        width: 400px;
-        height: 350px;
-        top: 1%;
-        left: 50%;
-        transform: translate(-50%, 0);
-    }
 
     .signup_wrapper {
         width: 70%;
@@ -252,19 +226,6 @@
 }
 
 @media screen and (max-width:480px) {
-    .signup_container {
-        width: 300px;
-        height: 400px;
-        background-color: rgba(0, 0, 0, .82);
-        top: 15%;
-        left: 50%;
-        transform: translate(-50%, 0);
-    }
-
-    .login_container {
-        width: 300px;
-        height: 400px;
-    }
 
     .login_wrapper {
         width: 90%;

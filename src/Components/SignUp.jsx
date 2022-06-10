@@ -11,7 +11,7 @@ import { loginLoadingStyle } from "../lib/getLoadingStyles";
 export default function SignUp({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState("hidden");
+  const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userInput, setUserInput] = useState(true);
   const [passInput, setPassInput] = useState(false);
@@ -35,7 +35,7 @@ export default function SignUp({ changeView }) {
     );
 
     if (handleRes) {
-      setLoading("visible");
+      setLoading(true);
 
       const userResponse = await SignUpUser(userNameInput, password);
 
@@ -48,12 +48,12 @@ export default function SignUp({ changeView }) {
         });
         setUserName();
         navigate("/");
-        setLoading("hidden");
+        setLoading(false);
       } else {
         setError(true);
         setPassword("");
         setConfirmPassword("");
-        setLoading("hidden");
+        setLoading(false);
       }
     }
   };
@@ -119,7 +119,7 @@ export default function SignUp({ changeView }) {
           </label>
           <button className={style.submit_btn} onClick={handleValidation}>
             Sign Up
-            <Loading style={loginLoadingStyle} />
+            {loading && <Loading style={loginLoadingStyle} />}
           </button>
           <div className={style.signup_wrapper}>
             <p className={style.signup_txt}>All ready a member?</p>
