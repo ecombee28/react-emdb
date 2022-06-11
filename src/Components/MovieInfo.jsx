@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../styles/MovieInfo.module.css";
-import { getGenre, getYear } from "../test";
+import { getGenre, getYear } from "../lib/getMovieInfo";
 import RatingsLogo from "./RatingsLogo";
 
 const MovieInfo = ({ movie }) => {
