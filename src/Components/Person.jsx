@@ -31,7 +31,7 @@ const Person = () => {
   return (
     <>
       <Helmet>
-        <title>{`${personDetail.name} - EMDB`}</title>
+        <title>{`${personDetail.name} | EMDB`}</title>
       </Helmet>
       <div className={style.main_wrapper}>
         <div className={style.main_container}>

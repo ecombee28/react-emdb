@@ -7,6 +7,7 @@ import { useNameUpdate } from "../utils/UserContext";
 import Cookie from "js-cookie";
 import Loading from "./Loading";
 import { loginLoadingStyle } from "../lib/getLoadingStyles";
+import { Helmet } from "react-helmet";
 
 export default function SignUp({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -63,6 +64,9 @@ export default function SignUp({ changeView }) {
 
   return (
     <div>
+      <Helmet>
+        <title>Sign Up | EMDB</title>
+      </Helmet>
       <div className={style.main_container}> </div>
       <div className={style.signup_container}>
         <div className={style.login_wrapper}>

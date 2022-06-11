@@ -69,7 +69,7 @@ export default function Collections() {
       ) : (
         <div>
           <Helmet>
-            <title>{`${data.name} Collection - EMDB`}</title>
+            <title>{`${data.name} Collection | EMDB`}</title>
           </Helmet>
           <div className={collectionStyle.video_wrapper}>
             <img

@@ -47,7 +47,7 @@ const Search = () => {
   return (
     <div>
       <Helmet>
-        <title>Search-EMDB</title>
+        <title>Search | EMDB</title>
       </Helmet>
       <div className={searchStyles.search_bar}>
         <input

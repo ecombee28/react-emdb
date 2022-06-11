@@ -6,6 +6,7 @@ import { login } from "../utils/api";
 import { useNameUpdate } from "../utils/UserContext";
 import Cookie from "js-cookie";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Helmet } from "react-helmet";
 
 export default function Login({ changeView }) {
   const [userNameInput, setUserNameInput] = useState("");
@@ -55,6 +56,9 @@ export default function Login({ changeView }) {
 
   return (
     <div>
+      <Helmet>
+        <title>Login | EMDB</title>
+      </Helmet>
       <div className={style.main_container}> </div>
 
       <div className={style.login_container}>

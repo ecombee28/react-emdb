@@ -58,7 +58,7 @@ function Movie() {
         ) : (
           <div>
             <Helmet>
-              <title>{`${movie.name}/EMDB`}</title>
+              <title>{`${movie.name} | EMDB`}</title>
             </Helmet>
             {showTrailer && (
               <Trailer
