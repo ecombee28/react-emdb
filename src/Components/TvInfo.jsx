@@ -1,5 +1,5 @@
 import style from "../styles/MovieInfo.module.css";
-import { getGenre } from "../test";
+import { getGenre } from "../lib/getMovieInfo";
 import ImagePaths from "../lib/ImagePaths";
 
 const TvInfo = ({ movie }) => {
