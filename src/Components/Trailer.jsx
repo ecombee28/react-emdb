@@ -37,6 +37,7 @@ const Trailer = ({ trailer, showTrailer, setShowTrailer }) => {
           display="initial"
           allow="encrypted-media"
           frameBorder="0"
+          data-testid="iframe"
         />
       </div>
     </div>
