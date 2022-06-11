@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import MovieInfo from "../Components/MovieInfo";
 import { BrowserRouter as Router } from "react-router-dom";
 import { movieInfo } from "../__mock__/mockFetch";

@@ -23,6 +23,7 @@ const Trailer = ({ trailer, showTrailer, setShowTrailer }) => {
     <div className={`${style.trailer} ${!showTrailer && style.hide}`}>
       <span
         id="closeVideo"
+        data-testid="close-iframe"
         className={style.close}
         onClick={() => setShowTrailer(false)}
       >
@@ -30,6 +31,7 @@ const Trailer = ({ trailer, showTrailer, setShowTrailer }) => {
       </span>
       <div className={style.iframe_wrapper}>
         <Iframe
+          title={"trailer"}
           url={trailerUrl}
           width="100%"
           height="100%"
@@ -37,7 +39,6 @@ const Trailer = ({ trailer, showTrailer, setShowTrailer }) => {
           display="initial"
           allow="encrypted-media"
           frameBorder="0"
-          data-testid="iframe"
         />
       </div>
     </div>

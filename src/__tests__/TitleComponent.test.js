@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import TitleComponent from "../Components/TitleComponent";
 import { BrowserRouter as Router } from "react-router-dom";
 import { movieInfo } from "../__mock__/mockFetch";
@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 describe("test the TitleComponent", () => {
   test("title name and trailer button", async () => {
-    const fakeFunction = () => {};
+    const setShowTrailer = jest.fn();
 
     render(
       <Router>
@@ -15,7 +15,7 @@ describe("test the TitleComponent", () => {
           name={"Jurassic World Dominion"}
           count={0}
           showTrailer={false}
-          setShowTrailer={fakeFunction}
+          setShowTrailer={setShowTrailer}
         />
       </Router>
     );
@@ -26,10 +26,7 @@ describe("test the TitleComponent", () => {
     expect(title).toBeInTheDocument();
     expect(button).toBeInTheDocument();
 
-    // userEvent.click(button);
-    // await waitFor(() => {
-    //   const iFrame = screen.getByTestId("iframe");
-    //   expect(iFrame).toBeInTheDocument();
-    // });
+    userEvent.click(button);
+    expect(setShowTrailer).toHaveBeenCalledTimes(1);
   });
 });

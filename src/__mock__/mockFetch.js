@@ -79,3 +79,18 @@ export const movieInfo = {
   vote_average: 6.8,
   vote_count: 309,
 };
+
+export const trailerObj = [
+  {
+    id: "62a204677e12f06e05663ccf",
+    iso_639_1: "en",
+    iso_3166_1: "US",
+    key: "oMzCG2Xa7rY",
+    name: "Trailer: Therizinosaurus Tries to Kill Claire",
+    official: false,
+    published_at: "2022-06-04T11:21:04.000Z",
+    site: "YouTube",
+    size: 1080,
+    type: "Trailer",
+  },
+];
