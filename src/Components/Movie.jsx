@@ -50,8 +50,6 @@ function Movie() {
     callMovies();
   }, [movieId, userId]);
 
-  console.log(trailer);
-
   return (
     <div>
       <div>

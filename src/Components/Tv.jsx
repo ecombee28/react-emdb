@@ -25,7 +25,7 @@ function Movie() {
   const [trailer, setTrailer] = useState([]);
   const [count, setCount] = useState(null);
   const [recommended, setRecommend] = useState([]);
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showTrailer, setShowTrailer] = useState(false);
 
@@ -78,7 +78,7 @@ function Movie() {
                 name={movie.name}
               />
               <TvInfo movie={movie} />
-              <Cast castMembers={cast} />
+              {cast && <Cast castMembers={cast} />}
 
               <div className={style.recommended}>
                 {recommended.total_results > 0 && (
