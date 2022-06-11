@@ -70,6 +70,7 @@ function Movie() {
                 setShowTrailer={setShowTrailer}
                 showTrailer={showTrailer}
                 count={count[0].count}
+                name={movie.title}
               />
               <MovieInfo movie={movie} />
               <Cast castMembers={cast} />

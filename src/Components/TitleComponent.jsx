@@ -9,12 +9,13 @@ export default function TitleComponent({
   setShowTrailer,
   showTrailer,
   count,
+  name,
 }) {
   const userName = useName();
   return (
     <>
       <div className={style.movie_info_wrapper}>
-        <h1 className={style.title}>{movie.title}</h1>
+        <h1 className={style.title}>{name}</h1>
         <div className={style.trailer_wrapper}>
           <button
             className={style.trailer_button}
