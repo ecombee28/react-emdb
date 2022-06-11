@@ -10,6 +10,8 @@ import Loading from "./Loading";
 import { centerLoadingStyle } from "../lib/getLoadingStyles";
 import MovieInfo from "./MovieInfo";
 import TitleComponent from "./TitleComponent";
+import { Helmet } from "react-helmet";
+
 import {
   getMovieDetails,
   getTrailer,
@@ -57,6 +59,9 @@ function Movie() {
           <Loading style={centerLoadingStyle} />
         ) : (
           <div>
+            <Helmet>
+              <title>{`${movie.title}/EMDB`}</title>
+            </Helmet>
             {showTrailer && (
               <Trailer
                 trailer={trailer}

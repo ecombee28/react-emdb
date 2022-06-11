@@ -5,6 +5,7 @@ import FilmRoles from "./FilmRoles";
 import { getAgeOfDeath, getDate } from "../lib/getAges";
 import { getCastMemberInfo } from "../utils/api";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Person = () => {
   const [personDetail, setPersonDetail] = useState([]);
@@ -29,6 +30,9 @@ const Person = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`${personDetail.name} - EMDB`}</title>
+      </Helmet>
       <div className={style.main_wrapper}>
         <div className={style.main_container}>
           <section className={style.top_container}>

@@ -7,6 +7,8 @@ import dcText from "../assets/dc.png";
 import starWarsText from "../assets/starwars.png";
 import { getSearchResults } from "../utils/api";
 import CollectionComponent from "./CollectionComponents";
+import { Helmet } from "react-helmet";
+
 import {
   disneyObj,
   marvelObj,
@@ -44,6 +46,9 @@ const Search = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Search-EMDB</title>
+      </Helmet>
       <div className={searchStyles.search_bar}>
         <input
           type="text"

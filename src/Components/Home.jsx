@@ -5,6 +5,8 @@ import TvList from "./List";
 import style from "../styles/MainPage.module.css";
 import Loading from "./Loading";
 import { centerLoadingStyle } from "../lib/getLoadingStyles";
+import { Helmet } from "react-helmet";
+
 import {
   getTrending,
   getPopular,
@@ -57,6 +59,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>EMDB</title>
+      </Helmet>
       {loading ? (
         <Loading style={centerLoadingStyle} />
       ) : (

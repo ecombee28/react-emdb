@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation } from "react-router-dom";
 import { getCollections, getStarWarsMovies } from "../utils/api";
+import { Helmet } from "react-helmet";
 
 export default function Collections() {
   const [movies, setMovies] = useState([]);
@@ -61,14 +62,15 @@ export default function Collections() {
     fetchPosts();
   }, [page]);
 
-  console.log(data);
-
   return (
     <div>
       {loading ? (
         <h1>loading......</h1>
       ) : (
         <div>
+          <Helmet>
+            <title>{`${data.name} Collection - EMDB`}</title>
+          </Helmet>
           <div className={collectionStyle.video_wrapper}>
             <img
               src={data.image}

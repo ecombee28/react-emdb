@@ -22,7 +22,7 @@ const BottomNav = () => {
 
     setId(id);
     setUsername(user);
-  });
+  }, []);
 
   const logout = () => {
     Cookie.remove("id");

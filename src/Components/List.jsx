@@ -22,7 +22,7 @@ const MovieList = ({ movies, title, id, type }) => {
       behavior: "smooth",
     });
 
-    if (element.scrollLeft == ttl) {
+    if (element.scrollLeft === ttl) {
       setRightEnd(true);
     } else {
       setRightEnd(false);
@@ -39,7 +39,7 @@ const MovieList = ({ movies, title, id, type }) => {
       behavior: "smooth",
     });
 
-    if (element.scrollLeft == 0) {
+    if (element.scrollLeft === 0) {
       setLeftEnd(true);
     } else {
       setLeftEnd(false);
@@ -53,7 +53,7 @@ const MovieList = ({ movies, title, id, type }) => {
 
       element.scrollTo({
         top: 0,
-        left: element.scrollLeft == 1000,
+        left: element.scrollLeft === 1000,
         behavior: "smooth",
       });
 
@@ -62,7 +62,7 @@ const MovieList = ({ movies, title, id, type }) => {
     };
 
     resetSlider();
-  }, [movies]);
+  }, [movies, id]);
 
   return (
     <>
