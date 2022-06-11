@@ -1,5 +1,5 @@
 import React from "react";
-import movieInfoStyle from "../styles/MovieInfo.module.css";
+import style from "../styles/MovieInfo.module.css";
 import imdbImage from "../assets/imdb.png";
 import goodRottemImage from "../assets/good-rotton.png";
 import badRottemImage from "../assets/bad-rotton.png";
@@ -26,13 +26,9 @@ const RatingsLogo = ({ source, value }) => {
     else return metacriticImage;
   };
   return (
-    <div className={movieInfoStyle.wrap}>
-      <img
-        src={getRatingImage()}
-        className={movieInfoStyle.rating_logo}
-        alt="rating"
-      />
-      <p className={movieInfoStyle.rating}>{value}</p>
+    <div className={style.wrap}>
+      <img src={getRatingImage()} className={style.rating_logo} alt="rating" />
+      <p className={style.rating}>{value}</p>
     </div>
   );
 };

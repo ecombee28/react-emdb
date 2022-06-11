@@ -1,0 +1,39 @@
+.backdrop {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+}
+
+.img {
+    width: 100%;
+    object-fit: cover;
+    opacity: .6;
+    -webkit-mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, var(--black) 42%, transparent 100%);
+}
+
+
+/* MEDIA QUERY MAX-WIDTH:780*/
+
+@media screen and (max-width:780px) {
+
+    .img {
+        width: 100vw;
+        height: 50vh;
+    }
+
+
+}
+
+/* MEDIA QUERY MAX-WIDTH:480 */
+
+@media screen and (max-width:480px) {
+    .backdrop {
+        width: 100%;
+        height: 100vh;
+    }
+}

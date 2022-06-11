@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import movieInfoStyle from "../styles/MovieInfo.module.css";
+import movieInfoStyle from "../styles/Movie.module.css";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

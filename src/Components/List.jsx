@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import movieStyles from "../styles/Movie.module.css";
+import movieStyles from "../styles/List.module.css";
 import Poster from "./Poster";
 import {
   faArrowCircleRight,

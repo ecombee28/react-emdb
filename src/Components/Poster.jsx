@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import style from "../styles/Movie.module.css";
+import style from "../styles/List.module.css";
 
 const MoviePoster = ({ type, item }) => {
   const imagePath = "https://image.tmdb.org/t/p/w500";

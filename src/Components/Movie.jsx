@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import movieInfoStyle from "../styles/MovieInfo.module.css";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import RatingsLogo from "./RatingsLogo";
+import style from "../styles/Movie.module.css";
 import Cast from "./Cast";
 import Trailer from "./Trailer";
-import ImagePaths from "../lib/ImagePaths";
-import AddMovies from "./AddMovies";
 import Cookies from "js-cookie";
 import Recommended from "./List";
-import { getGenre, getYear } from "../test";
+import ImageBackdrop from "./ImageBackdrop";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { centerLoadingStyle } from "../lib/getLoadingStyles";
+import MovieInfo from "./MovieInfo";
+import TitleComponent from "./TitleComponent";
 import {
   getMovieDetails,
   getTrailer,
@@ -60,92 +56,25 @@ function Movie() {
         ) : (
           <div>
             {showTrailer && (
-              <div
-                className={`${movieInfoStyle.trailer} ${
-                  !showTrailer && movieInfoStyle.hide
-                }`}
-              >
-                <span
-                  id="closeVideo"
-                  className={movieInfoStyle.close}
-                  onClick={() => setShowTrailer(!showTrailer)}
-                >
-                  <FontAwesomeIcon
-                    icon={faTimesCircle}
-                    className={movieInfoStyle.close}
-                  />
-                </span>
-                <Trailer trailer={trailer} />
-              </div>
+              <Trailer
+                trailer={trailer}
+                showTrailer={showTrailer}
+                setShowTrailer={setShowTrailer}
+              />
             )}
 
-            <div className={movieInfoStyle.backdrop}>
-              <img
-                src={`${ImagePaths.original}${movie.backdrop_path}`}
-                className={movieInfoStyle.img}
-                alt="backdrop"
+            <ImageBackdrop movie={movie} />
+            <div className={style.movie_info_wrapper}>
+              <TitleComponent
+                movie={movie}
+                setShowTrailer={setShowTrailer}
+                showTrailer={showTrailer}
+                count={count[0].count}
               />
-            </div>
+              <MovieInfo movie={movie} />
+              <Cast castMembers={cast} />
 
-            <div className={movieInfoStyle.movie_info_wrapper}>
-              <h1 className={movieInfoStyle.title}>{movie.title}</h1>
-              <div className={movieInfoStyle.trailer_wrapper}>
-                <button
-                  className={movieInfoStyle.trailer_button}
-                  onClick={() => setShowTrailer(!showTrailer)}
-                >
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    className={movieInfoStyle.icon}
-                  />
-                  Trailer
-                </button>
-                {userId && (
-                  <div className={movieInfoStyle.add_movie}>
-                    <AddMovies
-                      movie_id={movie.id}
-                      media_type={"movie"}
-                      name={movie.title}
-                      count={count[0].count}
-                      imagePath={movie.backdrop_path}
-                    />
-                  </div>
-                )}
-              </div>
-
-              <div className={movieInfoStyle.movie_info}>
-                {movie.Rated && (
-                  <li className={movieInfoStyle.rated}>{movie.Rated}</li>
-                )}
-
-                <li className={movieInfoStyle.year}>{getYear(movie)}</li>
-                <li
-                  className={movieInfoStyle.runtime}
-                >{`${movie.runtime} minutes`}</li>
-                <li className={movieInfoStyle.genre}>{getGenre(movie)}</li>
-              </div>
-              <div className={movieInfoStyle.movie_ratings_wrapper}>
-                {movie.Response !== "False" &&
-                  movie.Ratings.map((logo, i) => (
-                    <RatingsLogo
-                      key={i}
-                      source={logo.Source}
-                      value={logo.Value}
-                    />
-                  ))}
-              </div>
-
-              <div className={`${movieInfoStyle.plot_wrapper}`}>
-                <p className={movieInfoStyle.plot}> {movie.overview}</p>
-              </div>
-
-              <div className={movieInfoStyle.cast_wrapper}>
-                {cast.map((list, i) => (
-                  <Cast key={i} castMember={list} />
-                ))}
-              </div>
-
-              <div className={movieInfoStyle.recommended}>
+              <div className={style.recommended}>
                 {recommended.total_results > 0 && (
                   <Recommended
                     key={recommended.results.id}

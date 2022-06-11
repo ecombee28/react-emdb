@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import movieInfoStyle from "../styles/MovieInfo.module.css";
+import style from "../styles/Trailer.module.css";
 import Iframe from "react-iframe";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
-const Trailer = ({ trailer }) => {
-  const [showMe, setShowMe] = useState(true);
+const Trailer = ({ trailer, showTrailer, setShowTrailer }) => {
   const [trailerUrl, setTrailerUrl] = useState("");
 
   useEffect(() => {
@@ -19,16 +20,25 @@ const Trailer = ({ trailer }) => {
   }, [trailer]);
 
   return (
-    <div className={movieInfoStyle.iframe_wrapper}>
-      <Iframe
-        url={trailerUrl}
-        width="100%"
-        height="100%"
-        id="ytVideo"
-        display="initial"
-        allow="encrypted-media"
-        frameBorder="0"
-      />
+    <div className={`${style.trailer} ${!showTrailer && style.hide}`}>
+      <span
+        id="closeVideo"
+        className={style.close}
+        onClick={() => setShowTrailer(false)}
+      >
+        <FontAwesomeIcon icon={faTimesCircle} className={style.close} />
+      </span>
+      <div className={style.iframe_wrapper}>
+        <Iframe
+          url={trailerUrl}
+          width="100%"
+          height="100%"
+          id="ytVideo"
+          display="initial"
+          allow="encrypted-media"
+          frameBorder="0"
+        />
+      </div>
     </div>
   );
 };
