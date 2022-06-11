@@ -96,11 +96,11 @@ export async function getCredits(type, id) {
     const fetchData = await axios.get(
       `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${API_KEY}&language=en-US`
     );
-    if (fetchData.data.cast.length > 16) {
-      return fetchData.data.cast.slice(0, 16);
+    if (fetchData.data.cast.length > 14) {
+      return fetchData.data.cast.slice(0, 14);
     } else if (
       fetchData.data.cast.length >= 1 &&
-      fetchData.data.cast.length <= 16
+      fetchData.data.cast.length <= 14
     ) {
       return fetchData.data.cast.slice(0, fetchData.data.cast.length);
     }
