@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import style from "../styles/List.module.css";
+import imagePaths from "../lib/ImagePaths";
 
 const MoviePoster = ({ type, item }) => {
-  const imagePath = "https://image.tmdb.org/t/p/w500";
-
   return (
     <div className={style.poster_container}>
       <Link to={`/${type}/${item.id}`}>
         <div className={style.poster_container}>
           <img
-            src={`${imagePath}${item.poster_path}`}
+            src={`${imagePaths.w500}${item.poster_path}`}
             alt=""
             className={style.posters}
           />
