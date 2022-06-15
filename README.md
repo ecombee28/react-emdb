@@ -22,7 +22,7 @@ The user can also create and login to their account. When the use has logged in,
 
 # Languages and Frameworks used
 
-I used React to build this application. The application is also connected to a MySQL database which allows the user to create a user account and store any movie or show to their watchlist. Other technologies used where HTML, CSS,Jest and React testing libary, and the TMDB API for all the movie content. It is also fully mobile responsive.
+I used React to build this application. The application is also connected to a MySQL database which allows the user to create a user account and store any movie or show to their watchlist. Other technologies used where HTML, CSS, Jest and React testing libary, and the TMDB API for all the movie content. It is also fully mobile responsive.
 
 # Things I learned
 
