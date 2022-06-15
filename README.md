@@ -22,11 +22,11 @@ The user can also create and login to their account. When the use has logged in,
 
 # Languages and Frameworks used
 
-I used the Next.js framework to build this application. The application is also connected to a MySQL database which allows the user to create a user account. Other technologies used where HTML, CSS, and TMDB API for all the movie content. It is also fully mobile responsive.
+I used React to build this application. The application is also connected to a MySQL database which allows the user to create a user account and store any movie or show to their watchlist. Other technologies used where HTML, CSS,Jest and React testing libary, and the TMDB API for all the movie content. It is also fully mobile responsive.
 
 # Things I learned
 
-I am still fairly new to react and next.js frameworks so by building this application it has grown my knowledge of client-side rendering vs server-side rendering. I was also able to continue to learn and develop my skills in HTML, CSS, Javascript, and working with API's.
+The reason I chose to create this application is because I love movies and when I came across the IMDB api and began to think of all the things I could do with it. Now that this application is complete I have learned more about React like the importance of creating small re-usable components that are easily tested.
 
 # Live site
 https://emdb.live/
