@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# EMDB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Erics Movie Database
 
-## Available Scripts
+# Project Overview
 
-In the project directory, you can run:
+This application uses the TMDB(The movie database) API together with all of its data. The home page displays trending movies, tv shows, popular movies, trending on Netflix's, and top-rated movies of all time.
 
-### `npm start`
+![](/Images/Main.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When a title is clicked on you will be able to view details of that selected movie. You will see the rating, year, genre, trailer, plot, and even recommended movies all from the TMDB api.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![](/Images/index.png)
 
-### `npm test`
+The search function of this application brings you to a landing page that displays 4 movie collections Marvel, DC, Disney, and Star Wars. I have used state and useEffect to dynamically update your search results for a more natural feel.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![](/Images/search.png)
 
-### `npm run build`
+The user can also create and login to their account. When the use has logged in, they can then save movies to their watch list. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![](/Images/login.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Languages and Frameworks used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I used the Next.js framework to build this application. The application is also connected to a MySQL database which allows the user to create a user account. Other technologies used where HTML, CSS, and TMDB API for all the movie content. It is also fully mobile responsive.
 
-### `npm run eject`
+# Things I learned
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+I am still fairly new to react and next.js frameworks so by building this application it has grown my knowledge of client-side rendering vs server-side rendering. I was also able to continue to learn and develop my skills in HTML, CSS, Javascript, and working with API's.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Live site
+https://emdb.live/
