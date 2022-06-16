@@ -26,7 +26,7 @@ I used React to build this application. The application is also connected to a M
 
 # Things I learned
 
-The reason I chose to create this application is because I love movies and when I came across the IMDB api and began to think of all the things I could do with it. Now that this application is complete I have learned more about React like the importance of creating small re-usable components that are easily tested.
+The reason I chose to create this application is because I love movies and when I came across the IMDB api and began to think of all the things I could do with it. Now that this application is complete I have learned more about React like the importance of creating small re-usable components that can be easily tested.
 
 # Live site
 https://emdb.live/
