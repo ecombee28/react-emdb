@@ -25,15 +25,17 @@ export default function TitleComponent({
             Trailer
           </button>
           {userName && (
-            <div className={style.add_movie}>
-              <AddMovies
-                movie_id={movie.id}
-                media_type={"movie"}
-                name={movie.title}
-                count={count}
-                imagePath={movie.backdrop_path}
-              />
-            </div>
+            <div></div>
+
+            // <div className={style.add_movie}>
+            //   <AddMovies
+            //     movie_id={movie.id}
+            //     media_type={"movie"}
+            //     name={movie.title}
+            //     count={count}
+            //     imagePath={movie.backdrop_path}
+            //   />
+            // </div>
           )}
         </div>
       </div>

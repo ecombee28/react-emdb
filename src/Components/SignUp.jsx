@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { HandleSignUpValidation } from "../lib/HandleSignUpValidation";
-import { SignUpUser } from "../utils/api";
+// import { SignUpUser } from "../utils/api";
 import { useNameUpdate } from "../utils/UserContext";
 import Cookie from "js-cookie";
 import Loading from "./Loading";
@@ -38,13 +38,13 @@ export default function SignUp({ changeView }) {
     if (handleRes) {
       setLoading(true);
 
-      const userResponse = await SignUpUser(userNameInput, password);
-
+      //const userResponse = await SignUpUser(userNameInput, password);
+      const userResponse = "success";
       if (userResponse.status === "success") {
-        Cookie.set("id", userResponse.id, {
+        Cookie.set("id", 1, {
           expires: 1,
         });
-        Cookie.set("username", userResponse.user, {
+        Cookie.set("username", "Eric", {
           expires: 1,
         });
         setUserName();

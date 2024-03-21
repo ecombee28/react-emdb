@@ -35,13 +35,13 @@ function Movie() {
   useEffect(() => {
     const callMovies = async () => {
       const movieData = await getTvDetails(movieId);
-      const countNumber = await getMovieCount(userId, movieId);
+      //const countNumber = await getMovieCount(userId, movieId);
       const trailer = await getTrailer("tv", movieId);
       const rec = await getRecommended("tv", movieId);
       const castData = await getCredits("tv", movieId);
 
       setMovies(movieData);
-      setCount(countNumber);
+      setCount(1);
       setTrailer(trailer);
       setRecommend(rec);
       setCast(castData);

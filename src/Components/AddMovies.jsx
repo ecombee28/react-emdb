@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "../styles/AddMovie.module.css";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addMovieToWatchList, removeMovieFromWatchList } from "../utils/api";
+// import { addMovieToWatchList, removeMovieFromWatchList } from "../utils/api";
 import Cookies from "js-cookie";
 import Loading from "./Loading";
 import { addLoadingStyle } from "../lib/getLoadingStyles";
@@ -33,14 +33,14 @@ export default function AddMovies({
   const handleMovie = async () => {
     setLoading(true);
     if (!selected) {
-      await addMovieToWatchList(userId, movie_id, media_type, name, imagePath);
+      //await addMovieToWatchList(userId, movie_id, media_type, name, imagePath);
 
       setLoading(false);
       setIcon(faCheck);
       setSelected(true);
       setMovieCount(1);
     } else {
-      await removeMovieFromWatchList(movie_id, userId);
+      //await removeMovieFromWatchList(movie_id, userId);
 
       setTimeout(() => {
         setLoading(false);

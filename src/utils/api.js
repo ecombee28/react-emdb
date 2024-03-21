@@ -116,16 +116,16 @@ export async function getCredits(type, id) {
  * @param {*} movieId
  * @returns
  */
-export async function getMovieCount(userId, movieId) {
-  try {
-    const fetchData = await axios.get(
-      `https://combeecreations.com/emdbapi/public/api/user/${userId}/movie/${movieId}`
-    );
-    return fetchData.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// export async function getMovieCount(userId, movieId) {
+//   try {
+//     const fetchData = await axios.get(
+//       `https://combeecreations.com/emdbapi/public/api/user/${userId}/movie/${movieId}`
+//     );
+//     return fetchData.data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 /**
  *
@@ -142,24 +142,24 @@ export async function getMovieCount(userId, movieId) {
  * @param {*} imagePath
  * @returns
  */
-export async function addMovieToWatchList(id, movieId, type, name, imagePath) {
-  try {
-    const fetchData = await axios.post(
-      `https://combeecreations.com/emdbapi/public/api/addmovies`,
-      {
-        userId: id,
-        movieId: movieId,
-        type: type,
-        name: name,
-        imagePath: imagePath,
-      }
-    );
+// export async function addMovieToWatchList(id, movieId, type, name, imagePath) {
+//   try {
+//     const fetchData = await axios.post(
+//       `https://combeecreations.com/emdbapi/public/api/addmovies`,
+//       {
+//         userId: id,
+//         movieId: movieId,
+//         type: type,
+//         name: name,
+//         imagePath: imagePath,
+//       }
+//     );
 
-    return fetchData.data.Movie_added;
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     return fetchData.data.Movie_added;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 /**
  *
@@ -167,20 +167,20 @@ export async function addMovieToWatchList(id, movieId, type, name, imagePath) {
  * @param {*} id
  * @returns
  */
-export async function removeMovieFromWatchList(movieId, id) {
-  try {
-    const fetchData = await axios.post(
-      `https://combeecreations.com/emdbapi/public/api/deletemovies`,
-      {
-        movieId: movieId,
-        userId: id,
-      }
-    );
-    return fetchData.data.Movie_added;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// export async function removeMovieFromWatchList(movieId, id) {
+//   try {
+//     const fetchData = await axios.post(
+//       `https://combeecreations.com/emdbapi/public/api/deletemovies`,
+//       {
+//         movieId: movieId,
+//         userId: id,
+//       }
+//     );
+//     return fetchData.data.Movie_added;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 /**
  *
@@ -215,22 +215,22 @@ export async function getSearchResults(query) {
   }
 }
 
-export async function getUsersMovies(userId, setMovies, setLoading) {
-  try {
-    const usersMovies = await axios.post(
-      `https://combeecreations.com/emdbapi/public/api/movies`,
-      {
-        userId: userId,
-      }
-    );
+// export async function getUsersMovies(userId, setMovies, setLoading) {
+//   try {
+//     const usersMovies = await axios.post(
+//       `https://combeecreations.com/emdbapi/public/api/movies`,
+//       {
+//         userId: userId,
+//       }
+//     );
 
-    await setMovies(usersMovies.data.Movies);
+//     await setMovies(usersMovies.data.Movies);
 
-    setLoading(false);
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     setLoading(false);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 export async function getStarWarsMovies() {
   try {
@@ -319,39 +319,39 @@ export async function getTopRatedMovies() {
  * @param {*} Cookie
  * @returns
  */
-export async function login(userNameInput, password) {
-  try {
-    const loginUser = await axios.post(
-      `https://combeecreations.com/emdbapi/public/api/login`,
-      {
-        username: userNameInput,
-        password: password,
-      }
-    );
-    const loggedInUser = await loginUser.data;
+// export async function login(userNameInput, password) {
+//   try {
+//     const loginUser = await axios.post(
+//       `https://combeecreations.com/emdbapi/public/api/login`,
+//       {
+//         username: userNameInput,
+//         password: password,
+//       }
+//     );
+//     const loggedInUser = await loginUser.data;
 
-    if (loggedInUser.status === "success") {
-      const getUsersMovies = await axios.post(
-        `https://combeecreations.com/emdbapi/public/api/movies`,
-        {
-          userId: loggedInUser.id,
-        }
-      );
+//     if (loggedInUser.status === "success") {
+//       const getUsersMovies = await axios.post(
+//         `https://combeecreations.com/emdbapi/public/api/movies`,
+//         {
+//           userId: loggedInUser.id,
+//         }
+//       );
 
-      const movies = await getUsersMovies.data.Movies;
+//       const movies = await getUsersMovies.data.Movies;
 
-      return { ...loginUser.data, movies };
-    } else {
-      localStorage.setItem(
-        "error_message",
-        JSON.stringify(loggedInUser.error_message)
-      );
-      return loggedInUser;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
+//       return { ...loginUser.data, movies };
+//     } else {
+//       localStorage.setItem(
+//         "error_message",
+//         JSON.stringify(loggedInUser.error_message)
+//       );
+//       return loggedInUser;
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 /**
  *
  * @param {*} userNameInput
@@ -359,30 +359,30 @@ export async function login(userNameInput, password) {
  * @param {*} setLoading
  * @returns
  */
-export async function SignUpUser(userNameInput, password) {
-  try {
-    const addUser = await axios.post(
-      `https://combeecreations.com/emdbapi/public/api/adduser`,
-      {
-        username: userNameInput,
-        password: password,
-      }
-    );
-    const addUserResponse = await addUser.data;
+//export async function SignUpUser(userNameInput, password) {
+//   try {
+//     const addUser = await axios.post(
+//       `https://combeecreations.com/emdbapi/public/api/adduser`,
+//       {
+//         username: userNameInput,
+//         password: password,
+//       }
+//     );
+//     const addUserResponse = await addUser.data;
 
-    if (addUserResponse.status === "success") {
-      return addUserResponse;
-    } else {
-      localStorage.setItem(
-        "error_message",
-        JSON.stringify(addUserResponse.error_message)
-      );
-      return addUserResponse;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     if (addUserResponse.status === "success") {
+//       return addUserResponse;
+//     } else {
+//       localStorage.setItem(
+//         "error_message",
+//         JSON.stringify(addUserResponse.error_message)
+//       );
+//       return addUserResponse;
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 export async function getCastMemberInfo(id) {
   try {

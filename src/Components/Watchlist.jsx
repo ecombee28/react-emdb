@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 import style from "../styles/WatchList.module.css";
 import Cookies from "js-cookie";
 import WatchListMovies from "./WatchListMovies";
-import { getUsersMovies } from "../utils/api";
+// import { getUsersMovies } from "../utils/api";
 
 export default function Watchlist() {
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
   const userId = Cookies.get("id");
 
-  useEffect(() => {
-    setLoading(true);
-    const getMovies = async () => {
-      await getUsersMovies(userId, setMovies, setLoading);
-    };
-    getMovies();
-  }, [userId]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const getMovies = async () => {
+  //     await getUsersMovies(userId, setMovies, setLoading);
+  //   };
+  //   getMovies();
+  // }, [userId]);
 
   return (
     <div className={style.main_container}>
